@@ -75,7 +75,7 @@ const fs = require('fs');
 *******
 #### Файловая архитектура проекта под NodeJS
 *******
-
+```
 Project Directoty
 |
 |node_modules
@@ -89,7 +89,7 @@ Project Directoty
 |app.js
 |package.json
 |package-lock.json 
-
+```
 *******
 #### NPM:
 *******
