@@ -27,6 +27,12 @@ __Принципы построения классов__
 объект `instanceof` прототип \\ true-false
 
 #### __Способы создания прототипов__
+
+***
+#### Создание Объекта JS
+***
+
+
 ##### 1. Функция - конструктор -- создание объекта через функцию, изначальный метод (по нему созданы массивы и пр.)
 ```
 // Constructor Functions and the new Operator
@@ -50,6 +56,30 @@ Person.prototype.calkAge = function()
 
 const jonas = new Person('Jonas', 1991);
 console.log(jonas);
+```
+
+Или Пример:
+```
+var houseKeeper1 = 
+{
+    yearsOfExperience: 12;
+    name: "Jane";
+    cleaning: ["bathroom", "lobby", "bathroom"]
+}
+```
+Функция - конструктор объектов. Первая буква названия обязательно заглавная.
+```
+function BellBoy (name, age, hasWorkPermit, languages)
+{
+    this.name = name;
+    this.age = age;
+    this.hasWorkPermit = hasWorkPermit;
+    this.languages = languages;
+}
+```
+Инициализация:
+```
+var bellBoy1 = new BellBoy("Timmy", 19, true, ["French", "English"]);
 ```
 
 Что происходит при вызове оператора new
@@ -441,6 +471,7 @@ console.log(acc1.getMovements());
 ***
 ## OBJECTS \ ОБЪЕКТЫ
 ***
+
 позволяет  использовать ключи - наименования\значения (property=свойства)
 
 ПРИМЕР
@@ -733,30 +764,4 @@ for (const [goalNumber, goalPlayer] of game.scored.entries())
 `game.scored.entries()` - используется для массива
 `Object.entries()`- используется для объекта
 
-***
-#### Создание Объекта JS
-***
 
-Пример:
-```
-var houseKeeper1 = 
-{
-    yearsOfExperience: 12;
-    name: "Jane";
-    cleaning: ["bathroom", "lobby", "bathroom"]
-}
-```
-Функция - конструктор объектов. Первая буква названия обязательно заглавная.
-```
-function BellBoy (name, age, hasWorkPermit, languages)
-{
-    this.name = name;
-    this.age = age;
-    this.hasWorkPermit = hasWorkPermit;
-    this.languages = languages;
-}
-```
-Инициализация:
-```
-var bellBoy1 = new BellBoy("Timmy", 19, true, ["French", "English"]);
-```
