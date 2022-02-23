@@ -1,3 +1,7 @@
+***
+#### Элементы ускорения загрузки
+***
+
 1. Использовать сборщики
 
 2. Проверять валидаторами
@@ -6,7 +10,6 @@ https://jigsaw.w3.org/css-validator/
 
 3.Проверять выгруженные сайты через 
 https://developers.google.com/speed/pagespeed/insights/
-
 
 4. Сжимать изображения и код:
 png и jpeg https://tinypng.com
@@ -34,3 +37,9 @@ https://habr.com/ru/post/204238/
 
 8. Mobile friendly test
 https://search.google.com/test/mobile-friendly?utm_source=support.google.com%2Fwebmasters%2F&utm_medium=referral&utm_campaign=%206352293
+
+
+***
+#### Инструменты
+***
+https://astro.build/ - новый инструмент, исключающий в финальной версии JS и содержащий я иных оптимизаций. По данным разработчиков заметно ускоряет работу
