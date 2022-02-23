@@ -1,6 +1,6 @@
 https://getbootstrap.com/
 
-Модули для бутстрапа
+РњРѕРґСѓР»Рё РґР»СЏ Р±СѓС‚СЃС‚СЂР°РїР°
 https://bootsnipp.com/
 
 <!-- Bootstrap CDN -->
