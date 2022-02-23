@@ -1,38 +1,53 @@
+***
+## REACT
+***
 https://github.com/leonidlebedev/javascript-airbnb/tree/master/react
 
-1 ---
+***
+#### 1. РћСЃРЅРѕРІС‹
+***
+```
 //var React = require('react');
 //var ReactDOM = require('react-dom');
-// устаревшее, можно 
+// СѓСЃС‚Р°СЂРµРІС€РµРµ, РјРѕР¶РЅРѕ 
 import React from 'react';
 import ReactDOM from 'react-dom';
+```
 
-ReactDOM.render(<h1>Hello There</h1>, document.getElementById('root'));
-// параметры render 
-// 1) что показывать, 
-// 2) где показывать,
-// 3) callback, то есть когда функция будет завершена
+`ReactDOM.render(<h1>Hello There</h1>, document.getElementById('root'));`
+// РїР°СЂР°РјРµС‚СЂС‹ render 
+// 1) С‡С‚Рѕ РїРѕРєР°Р·С‹РІР°С‚СЊ, 
+// 2) РіРґРµ РїРѕРєР°Р·С‹РІР°С‚СЊ,
+// 3) callback, С‚Рѕ РµСЃС‚СЊ РєРѕРіРґР° С„СѓРЅРєС†РёСЏ Р±СѓРґРµС‚ Р·Р°РІРµСЂС€РµРЅР°
 
-//это тоже самое что:
+//СЌС‚Рѕ С‚РѕР¶Рµ СЃР°РјРѕРµ С‡С‚Рѕ:
+```
 var h1 = document.createElement('h1');
 h1.innerHTML = 'HelloWorld';
 document.getElementById('root').appendChild(h1);
+```
 
-Связано с использованием JSX - расширение JS через встроенный Babel.
+РЎРІСЏР·Р°РЅРѕ СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј JSX - СЂР°СЃС€РёСЂРµРЅРёРµ JS С‡РµСЂРµР· РІСЃС‚СЂРѕРµРЅРЅС‹Р№ Babel.
 
-2 ---
-//Для добавления нескольких элементов - обернуть в div 
-
+***
+#### 2. Р”РѕР±Р°РІР»РµРЅРёРµ РЅРµСЃРєРѕР»СЊРєРёС… СЌР»РµРјРµРЅС‚РѕРІ
+***
+//Р”Р»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ РЅРµСЃРєРѕР»СЊРєРёС… СЌР»РµРјРµРЅС‚РѕРІ - РѕР±РµСЂРЅСѓС‚СЊ РІ div 
+```
 ReactDOM.render(
 <div>
 <h1>Hello</h1>
 <p>There</p>
 </div>,
 document.getElementById("root"));
+```
 
-3 ---
-// Чтобы вводить в html, внутри JSX, код JS, нужно обернуть его в {}
-// Пример
+***
+#### 3. РћС‚РѕР±СЂР°Р¶РµРЅРёРµ html СЌР»РµРµРЅС‚РѕРІ РІРЅСѓС‚СЂРё JSX
+***
+// Р§С‚РѕР±С‹ РІРІРѕРґРёС‚СЊ РІ html, РІРЅСѓС‚СЂРё JSX, РєРѕРґ JS, РЅСѓР¶РЅРѕ РѕР±РµСЂРЅСѓС‚СЊ РµРіРѕ РІ {}
+// РџСЂРёРјРµСЂ
+```
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -47,9 +62,9 @@ ReactDOM.render(
   </div>,
   document.getElementById("root")
 );
-
-//Или через шаблонные литералы
-
+```
+//РР»Рё С‡РµСЂРµР· С€Р°Р±Р»РѕРЅРЅС‹Рµ Р»РёС‚РµСЂР°Р»С‹
+```
 ReactDOM.render(
   <div>
     <h1>Hello {name}!</h1>
@@ -59,20 +74,19 @@ ReactDOM.render(
 );
 
 //<p>Your lucker number is {{`${luckNumber} ${smthElse}`}</p>
-// равняется
+// СЂР°РІРЅСЏРµС‚СЃСЏ
 // <p>Your lucker number is {luckNumber + " " + smthElse}</p> 
+```
 
-4---
-
+***
+РџСЂРёРјРµСЂ РїСЂРѕРµРєС‚Р°
+***
 //Create a react app from scratch.
 //It should display 2 paragraph HTML elements.
 //The paragraphs should say:
 //Created by YOURNAME.
 //Copyright CURRENTYEAR.
-//E.g.
-//Created by Angela Yu.
-//Copyright 2019.
-
+```
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -88,13 +102,19 @@ ReactDOM.render
   </div>,
   document.getElementById("root")
 );
+```
 
-5---
-// Для того, чтобы дать задать тип ссылки в скрипте нужно 
-<script src="../src/index.js" type="text/JSX"></script>
+***
+#### 5. Р”РѕР±Р°РІР»РµРЅРёРµ С‚РёРїР° СЃСЃС‹Р»РєРё
+***
+// Р”Р»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ Р·Р°РґР°С‚СЊ С‚РёРї СЃСЃС‹Р»РєРё РІ СЃРєСЂРёРїС‚Рµ РЅСѓР¶РЅРѕ 
+`<script src="../src/index.js" type="text/JSX"></script>`
 
-6---
-// Добавление стилей 
+***
+#### 6. Р”РѕР±Р°РІР»РµРЅРёРµ СЃС‚РёР»РµР№
+***
+```
+// Р”РѕР±Р°РІР»РµРЅРёРµ СЃС‚РёР»РµР№ 
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -120,25 +140,27 @@ ReactDOM.render(
   </div>,
   document.getElementById("root")
 );
-
-//и в сss в то же время
-
+```
+//Рё РІ СЃss РІ С‚Рѕ Р¶Рµ РІСЂРµРјСЏ
+```
 .img 
 {
   width: 100px;
   height: 100px;
 }
-
-7--- Добавление стилей онлайн
-- с двойными фигурными скобками (!) так как параметр должен быть в виде JS объекта + сами фигурные скобки
-
+```
+***
+#### 7. Р”РѕР±Р°РІР»РµРЅРёРµ СЃС‚РёР»РµР№ С‡РµСЂРµР· РІС‹РїРѕР»РЅСЏРµРјС‹Р№ РєРѕРґ
+***
+- СЃ РґРІРѕР№РЅС‹РјРё С„РёРіСѓСЂРЅС‹РјРё СЃРєРѕР±РєР°РјРё (!) С‚Р°Рє РєР°Рє РїР°СЂР°РјРµС‚СЂ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РІ РІРёРґРµ JS РѕР±СЉРµРєС‚Р° + СЃР°РјРё С„РёРіСѓСЂРЅС‹Рµ СЃРєРѕР±РєРё
+```
 import React from "react";
 import ReactDOM from "react-dom";
 
 ReactDOM.render(<h1 style={{color:"red"}}>Hello World!</h1>, document.getElementById("root"));
-
-- через переменную. В этом случае все параметры css переводятся в объект JS и в JSX пишется переменная
-
+```
+- С‡РµСЂРµР· РїРµСЂРµРјРµРЅРЅСѓСЋ. Р’ СЌС‚РѕРј СЃР»СѓС‡Р°Рµ РІСЃРµ РїР°СЂР°РјРµС‚СЂС‹ css РїРµСЂРµРІРѕРґСЏС‚СЃСЏ РІ РѕР±СЉРµРєС‚ JS Рё РІ JSX РїРёС€РµС‚СЃСЏ РїРµСЂРµРјРµРЅРЅР°СЏ
+```
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -151,12 +173,14 @@ const customStyle =
 
 ReactDOM.render(<h1 style={customStyle}>Hello World!</h1>,
 document.getElementById("root"));
+```
+Р”Р»СЏ РёР·РјРµРЅРµРЅРёСЏ РїР°СЂР°РјРµС‚СЂРѕРІ РѕР±СЉРµРєС‚Р° РјРѕР¶РЅРѕ РёР·РјРµРЅСЏС‚СЊ РїРµСЂРµРјРµРЅРЅСѓСЋ РєР°Рє РІ JS
 
-Для изменения параметров объекта можно изменять переменную как в JS
+`customStyle.color = "blue";`
 
-customStyle.color = "blue";
-
-=======
+***
+РџСЂРёРјРµСЂ
+***
 
 //Show a single h1 that says "Good morning" if between midnight and 12PM.
 //or "Good Afternoon" if between 12PM and 6PM.
@@ -164,7 +188,7 @@ customStyle.color = "blue";
 //Apply the "heading" style in the styles.css
 //Dynamically change the color of the h1 using inline css styles.
 //Morning = red, Afternoon = green, Night = blue.
-
+```
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -172,7 +196,7 @@ let Data = new Date();
 let hour = Data.getHours();
 let minutes = Data.getMinutes();
 let nowIs; 
-let Time = nowIs + " Текущее время: " + hour + ":" + minutes;
+let Time = nowIs + " РўРµРєСѓС‰РµРµ РІСЂРµРјСЏ: " + hour + ":" + minutes;
 const Style = 
 {
   color: "red",
@@ -184,11 +208,11 @@ ReactDOM.render(
   <h1 style={Style} class="heading">{Time}</h1>,
   document.getElementById("root")
 );
+```
+ // РћРїСЂРµРґРµР»РµРЅРёРµ РІСЂРµРјРµРЅРё СЃСѓС‚РѕРє, РІС‹Р±РёСЂР°СЏ РјРµР¶РґСѓ СѓС‚СЂРѕРј, РґРЅРµРј Рё РІРµС‡РµСЂРѕРј
+`function now()`
 
- // Определение времени суток, выбирая между утром, днем и вечером
-function now()
-
-==== Почти рабочий код
+==== РџРѕС‡С‚Рё СЂР°Р±РѕС‡РёР№ РєРѕРґ
 
 //Show a single h1 that says "Good morning" if between midnight and 12PM.
 //or "Good Afternoon" if between 12PM and 6PM.
@@ -196,13 +220,13 @@ function now()
 //Apply the "heading" style in the styles.css
 //Dynamically change the color of the h1 using inline css styles.
 //Morning = red, Afternoon = green, Night = blue.
-
+```
 import React from "react";
 import ReactDOM from "react-dom";
 let Data = new Date();
 let hour = Data.getHours();
 let minutes = Data.getMinutes();
-let Time = timeFunction() + " Текущее время: " + hour + ":" + minutes;
+let Time = timeFunction() + " РўРµРєСѓС‰РµРµ РІСЂРµРјСЏ: " + hour + ":" + minutes;
 const customStyle = 
 {
   color: "red",
@@ -221,37 +245,29 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
- // Определение времени суток, выбирая между утром, днем и вечером
+ // РћРїСЂРµРґРµР»РµРЅРёРµ РІСЂРµРјРµРЅРё СЃСѓС‚РѕРє, РІС‹Р±РёСЂР°СЏ РјРµР¶РґСѓ СѓС‚СЂРѕРј, РґРЅРµРј Рё РІРµС‡РµСЂРѕРј
  function timeFunction(nowIs) {
    if (hour >= 24 || hour <= 1) {
-      nowIs = "Доброе утро!";
+      nowIs = "Р”РѕР±СЂРѕРµ СѓС‚СЂРѕ!";
       Time = nowIs;
       return Time;
       ;
   } else {
-      nowIs = "Добрый вечер!";
+      nowIs = "Р”РѕР±СЂС‹Р№ РІРµС‡РµСЂ!";
       Time = nowIs;
       return Time;
       ;
   }
 }
-
-====== Более простой вариант
-
-//Show a single h1 that says "Good morning" if between midnight and 12PM.
-//or "Good Afternoon" if between 12PM and 6PM.
-//or "Good evening" if between 6PM and midnight.
-//Apply the "heading" style in the styles.css
-//Dynamically change the color of the h1 using inline css styles.
-//Morning = red, Afternoon = green, Night = blue.
-
+```
+====== Р‘РѕР»РµРµ РїСЂРѕСЃС‚РѕР№ РІР°СЂРёР°РЅС‚
+```
 import React from "react";
 import ReactDOM from "react-dom";
 
 let Data = new Date();
 let hour = Data.getHours();
-
-// ======= Блок выбора приветствия
+// ======= Р‘Р»РѕРє РІС‹Р±РѕСЂР° РїСЂРёРІРµС‚СЃС‚РІРёСЏ
 let greeting; 
 
 let customStyle = {
@@ -260,62 +276,61 @@ let customStyle = {
 
 if (hour < 12)
 {
-  greeting = "Доброе утро.";
+  greeting = "Р”РѕР±СЂРѕРµ СѓС‚СЂРѕ.";
   customStyle.color = "blue";
 }
 else if (hour < 18)
 {
-  greeting = "Добрый день.";
+  greeting = "Р”РѕР±СЂС‹Р№ РґРµРЅСЊ.";
   customStyle.color = "green";
 }
 else 
 {
-  greeting = "Добрый вечер.";
+  greeting = "Р”РѕР±СЂС‹Р№ РІРµС‡РµСЂ.";
   customStyle.color = "black";
 }
-// ======= Окончание блока Выбора приветствия
-
+// ======= РћРєРѕРЅС‡Р°РЅРёРµ Р±Р»РѕРєР° Р’С‹Р±РѕСЂР° РїСЂРёРІРµС‚СЃС‚РІРёСЏ
 // ======= Render 
 ReactDOM.render(
   <h1 className = "heading" style={customStyle}>{greeting}</h1>,
   document.getElementById("root")
 );
+```
+***
+#### 8. РљРѕРјРїРѕРЅРµРЅС‚С‹
+***
+РџРёС€РµС‚СЃСЏ С„СѓРЅРєС†РёСЏ, РЅР°Р·РІР°РЅРёРµ РєРѕС‚РѕСЂРѕР№ РїРѕ РєРѕРЅРІРµРЅС†РёРё РІ РџР°СЃРєР°Р»СЊ-СЃС‚РёР»Рµ
+Рё РІРЅСѓС‚СЂРё РѕРЅРё РІРѕР·РІСЂР°С‰Р°РµС‚ С‡Р°СЃС‚СЊ РєРѕРґР°, РєРѕС‚РѕСЂС‹Р№ СЏРІР»СЏРµС‚СЃСЏ РєРѕРјРїРѕРЅРµРЅС‚РѕРј
 
-
-8 --- Компоненты
-
-Пишется функция, название которой по конвенции в Паскаль-стиле
-и внутри они возвращает часть кода, который является компонентом
-
-к примеру, 
-
+Рє РїСЂРёРјРµСЂСѓ, 
+```
 function Heading()
 {
   return <h1>My Favourite Foods</h1>;
 }
+```
+РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РєРѕРјРїРѕРЅРµРЅС‚ РµРіРѕ РїРёС€СѓС‚ РІ РєРѕРґРµ РєР°Рє С‚СЌРі
+`<Heading></Heading>`
 
-для того, чтобы использовать компонент его пишут в коде как тэг
-<Heading></Heading>
+РЅРѕ Р»СѓС‡С€Рµ
 
-но лучше
+`<Heading />`
 
-<Heading />
+РљРѕРјРїРѕРЅРµРЅС‚С‹ РїСЂРёРЅСЏС‚Рѕ РёРјРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ.
+Р”Р»СЏ СЌС‚РѕРіРѕ:
+- СЃРѕР·РґР°РµС‚СЃСЏ РЅРѕРІС‹Р№ С„Р°Р№Р» СЃ РЅР°Р·РІР°РЅРёРµРј РєРѕРјРїРѕРЅРµРЅС‚Р° (РІ РїР°РїРєРµ src):
+`Heading.jsx`
+-С‚Р°Рј РїРѕРјРµС‰Р°РµС‚СЃСЏ РєРѕРјРїРѕРЅРµРЅС‚
+- РїРѕРјРµС‰Р°РµС‚СЃСЏ РєРѕРґ РёРјРїРѕСЂС‚Р° СЂРµР°РєС‚Р° РІ РЅР°С‡Р°Р»Рѕ РєРѕРјРїРѕРЅРµРЅС‚Р°
+`import React from "react"; `
+-РІ РєРѕРЅС†Рµ РєРѕРґР° РІ С„Р°Р№Р»Рµ РєРѕРјРїРѕРЅРµРЅС‚Р° РїРѕРјРµС‰Р°РµС‚СЃСЏ РєРѕРґ СЌРєСЃРїРѕСЂС‚Р°
+`export default Heading;`
+- РІ С„Р°Р№Р»Рµ index.js РїРѕРјРµС‰Р°РµС‚СЃСЏ РєРѕРґ РёРјРїРѕСЂС‚Р°
+`import Heading from "./Heading.jsx"` (С‡Р°СЃС‚Рѕ РјРѕР¶РЅРѕ РЅРµ СѓРєР°Р·С‹РІР°С‚СЊ СЂР°СЃС€РёСЂРµРЅРёРµ)
 
-Компоненты принято импортировать.
-Для этого:
-- создается новый файл с названием компонента (в папке src):
-Heading.jsx
--там помещается компонент
-- помещается код импорта реакта в начало компонента
-import React from "react"; 
--в конце кода в файле компонента помещается код экспорта
-export default Heading;
-- в файле index.js помещается код импорта
-import Heading from "./Heading.jsx" (часто можно не указывать расширение)
-
-Пример.
-Файл index
-
+РџСЂРёРјРµСЂ.
+Р¤Р°Р№Р» index
+```
 import React from "react";
 import ReactDOM from "react-dom";
 import Heading from "./Heading.jsx" 
@@ -328,8 +343,9 @@ ReactDOM.render(
   </div>,
   document.getElementById("root")
 );
-
-=== Файл компонента <Heading />
+```
+=== Р¤Р°Р№Р» РєРѕРјРїРѕРЅРµРЅС‚Р° <Heading />
+```
 import React from "react";
 
 function Heading()
@@ -338,9 +354,9 @@ function Heading()
 }
 
 export default Heading;
-
-=== Файл компонента <List /> 
-
+```
+=== Р¤Р°Р№Р» РєРѕРјРїРѕРЅРµРЅС‚Р° <List /> 
+```
 import React from "react";
 
 function List()
@@ -349,8 +365,9 @@ return <ul><li>Bacon</li><li>Jamon</li><li>Noodles</li></ul>;
 }
 
 export default List;
-
-=== ИЛИ
+```
+=== РР›Р
+```
 import React from "react";
 
 function List(){
@@ -364,11 +381,13 @@ return (
 }
 
 export default List;
+```
+***
+#### 9. РРјРїРѕСЂС‚ ES6
+***
 
-9---- Имопрт ES6
-
-Файл (1) - куда импортируют
-
+Р¤Р°Р№Р» (1) - РєСѓРґР° РёРјРїРѕСЂС‚РёСЂСѓСЋС‚
+```
 import React from "react";
 import ReactDOM from "react-dom";
 import pi, { doublePi, triplePi } from "./math.js";
@@ -381,8 +400,9 @@ ReactDOM.render(
   </ul>,
   document.getElementById("root")
 );
-
-Файл (2) - откуда импортируют
+```
+Р¤Р°Р№Р» (2) - РѕС‚РєСѓРґР° РёРјРїРѕСЂС‚РёСЂСѓСЋС‚
+```
 const pi = 3.1415962;
 
 function doublePi() {
@@ -395,18 +415,18 @@ function triplePi() {
 
 export default pi;
 export { doublePi, triplePi };
-
-======= 2-й пример импорта \ экспорта 
-(1) файл - куда импортируется
-
+```
+======= 2-Р№ РїСЂРёРјРµСЂ РёРјРїРѕСЂС‚Р° \ СЌРєСЃРїРѕСЂС‚Р° 
+(1) С„Р°Р№Р» - РєСѓРґР° РёРјРїРѕСЂС‚РёСЂСѓРµС‚СЃСЏ
+```
 import React from "react";
 import ReactDOM from "react-dom";
 import { add, multiply, subtract, divide} from "./calculator.js"
-
+```
 //Import the add, multiply, subtract and divide functions
 //from the calculator.js file.
 //If successful, your website should look the same as the Final.png
-
+```
 ReactDOM.render(
   <ul>
     <li>{add(1, 2)}</li>
@@ -416,8 +436,9 @@ ReactDOM.render(
   </ul>,
   document.getElementById("root")
 );
-
-(2) файл - откуда экспортируется
+```
+(2) С„Р°Р№Р» - РѕС‚РєСѓРґР° СЌРєСЃРїРѕСЂС‚РёСЂСѓРµС‚СЃСЏ
+```
 function add(n1, n2) {
   return n1 + n2;
 }
@@ -435,10 +456,12 @@ function divide(n1, n2) {
 }
 
 export { add, multiply, subtract, divide};
-
-======= Приложение keeper
-= Файл App.jsx
-
+```
+***
+РџСЂРёРјРµСЂ. РџСЂРёР»РѕР¶РµРЅРёРµ keeper
+***
+= Р¤Р°Р№Р» App.jsx
+```
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -455,9 +478,9 @@ function App() {
 }
 
 export default App;
-
-= Файл Footer.jsx
-
+```
+= Р¤Р°Р№Р» Footer.jsx
+```
 import React from "react";
 
 function Footer() {
@@ -470,12 +493,10 @@ function Footer() {
 }
 
 export default Footer;
-
-
-= Файл Header.jsx
-
+```
+= Р¤Р°Р№Р» Header.jsx
+```
 import React from "react";
-
 function Header() {
   return (
     <header>
@@ -483,11 +504,10 @@ function Header() {
     </header>
   );
 }
-
 export default Header;
-
-= Файл Note.jsx
-
+```
+= Р¤Р°Р№Р» Note.jsx
+```
 import React from "react";
 
 function Note() {
@@ -498,25 +518,26 @@ function Note() {
     </div>
   );
 }
-
 export default Note;
+```
+***
+#### PROPS - СЌС‚Рѕ Р°С‚СЂРёР±СѓС‚С‹, РєРѕС‚РѕСЂС‹Рµ РјРѕР¶РЅРѕ СЃРѕР·РґР°РІР°С‚СЊ РІ СЂРµР°РєС‚Рµ.
+***
 
-======= PROPS
-это атрибуты, которые можно создавать в реакте.
-Синтаксис атрибутов похож на синтаксис input,
-<input id="root" placeholder="hello" ...>
-
-Когда такой атрибут создается в "описании" карточки <Card /> то в параметрах функции Card(props) они переходят как объекты.
-К примеру, <Card name ="my name"/>
-будет при вызове Card (props) делаться объектом. 
+РЎРёРЅС‚Р°РєСЃРёСЃ Р°С‚СЂРёР±СѓС‚РѕРІ РїРѕС…РѕР¶ РЅР° СЃРёРЅС‚Р°РєСЃРёСЃ input,
+`<input id="root" placeholder="hello" ...>`
+РљРѕРіРґР° С‚Р°РєРѕР№ Р°С‚СЂРёР±СѓС‚ СЃРѕР·РґР°РµС‚СЃСЏ РІ "РѕРїРёСЃР°РЅРёРё" РєР°СЂС‚РѕС‡РєРё <Card /> С‚Рѕ РІ РїР°СЂР°РјРµС‚СЂР°С… С„СѓРЅРєС†РёРё Card(props) РѕРЅРё РїРµСЂРµС…РѕРґСЏС‚ РєР°Рє РѕР±СЉРµРєС‚С‹.
+Рљ РїСЂРёРјРµСЂСѓ, `<Card name ="my name"/>`
+Р±СѓРґРµС‚ РїСЂРё РІС‹Р·РѕРІРµ Card (props) РґРµР»Р°С‚СЊСЃСЏ РѕР±СЉРµРєС‚РѕРј. 
+```
 Object (name: "my name")
 name:"my name"
+```
 
-Это значит, что атрибут name доступен через props.name
-
-Пример.
-=1_Создается компонент
-
+Р­С‚Рѕ Р·РЅР°С‡РёС‚, С‡С‚Рѕ Р°С‚СЂРёР±СѓС‚ name РґРѕСЃС‚СѓРїРµРЅ С‡РµСЂРµР· props.name
+РџСЂРёРјРµСЂ.
+=1_РЎРѕР·РґР°РµС‚СЃСЏ РєРѕРјРїРѕРЅРµРЅС‚
+```
 function Card (props){
   return( 
   <div>
@@ -526,8 +547,9 @@ function Card (props){
   <p>{props.phone}</p>
   </div>)
 };
-
-=2_Рендерится с атрибутами \ пропсами
+```
+=2_Р РµРЅРґРµСЂРёС‚СЃСЏ СЃ Р°С‚СЂРёР±СѓС‚Р°РјРё \ РїСЂРѕРїСЃР°РјРё
+```
 ReactDOM.render(
   <div>
   <Card 
@@ -539,10 +561,10 @@ ReactDOM.render(
   </div>,
   document.getElementById("root")
 );
-
+```
 ===
-чтобы экспортировать из файла в виде массива с внутренними объектами
-
+С‡С‚РѕР±С‹ СЌРєСЃРїРѕСЂС‚РёСЂРѕРІР°С‚СЊ РёР· С„Р°Р№Р»Р° РІ РІРёРґРµ РјР°СЃСЃРёРІР° СЃ РІРЅСѓС‚СЂРµРЅРЅРёРјРё РѕР±СЉРµРєС‚Р°РјРё
+```
 const contacts = [
   {
     name: "Beyonce",
@@ -566,16 +588,13 @@ const contacts = [
     email: "gmail@chucknorris.com"
   }
 ];
-
 export default contacts;
-
-нужно использовать следующий код
-
+```
+РЅСѓР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЃР»РµРґСѓСЋС‰РёР№ РєРѕРґ
+```
 import React from "react";
 import Card from "./Card.jsx";
 import contacts from "../contacts.js"
-
-console.log(contacts);
 
 function App() {
   return( 
@@ -588,13 +607,13 @@ function App() {
     email={contacts[0].email} />
     </div>);
 }
-
 export default App;
-
-======= Метод map
-
-Вместо 
-
+```
+***
+#### РњРµС‚РѕРґ map
+***
+Р’РјРµСЃС‚Рѕ 
+```
 <Card
         name={contacts[0].name}
         img={contacts[0].imgURL}
@@ -613,9 +632,9 @@ export default App;
         tel={contacts[2].phone}
         email={contacts[2].email}
       />
-      
-= Можно использовать функцию map (contacts это переменная в виде массива с объектами-элементами)
-
+``` 
+= РњРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С„СѓРЅРєС†РёСЋ map (contacts СЌС‚Рѕ РїРµСЂРµРјРµРЅРЅР°СЏ РІ РІРёРґРµ РјР°СЃСЃРёРІР° СЃ РѕР±СЉРµРєС‚Р°РјРё-СЌР»РµРјРµРЅС‚Р°РјРё)
+```
   const contacts = [
   {
     id: 1,
@@ -642,17 +661,18 @@ export default App;
     email: "gmail@chucknorris.com"
   }
 ];
-
-  \\создается функция для создания карточки в App.jsx
-  
+```
+  \\СЃРѕР·РґР°РµС‚СЃСЏ С„СѓРЅРєС†РёСЏ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РєР°СЂС‚РѕС‡РєРё РІ App.jsx
+  ```
   function createCard()
   {
   return <Card 
   name={contact.name};
   />
   }
-  
-  \\ Создается map-функция
+  ```
+  \\ РЎРѕР·РґР°РµС‚СЃСЏ map-С„СѓРЅРєС†РёСЏ
+ ```
  function createCard(contact){
   return <Card
   key={contact.id}
@@ -662,10 +682,10 @@ export default App;
   email={contact.email}
   />
 }
-
-
-############# Mapping Components Practice
-
+```
+РџСЂРёРјРµСЂ
+Mapping Components Practice
+```
 Import React from "react";
 
 function App() {
@@ -684,7 +704,7 @@ function App() {
             <span>Tense Biceps</span>
           </dt>
           <dd>
-            “You can do that!” or “I feel strong!” Arm with tense biceps. Also
+            вЂњYou can do that!вЂќ or вЂњI feel strong!вЂќ Arm with tense biceps. Also
             used in connection with doing sports, e.g. at the gym.
           </dd>
         </div>
@@ -697,7 +717,7 @@ function App() {
           </dt>
           <dd>
             Two hands pressed together. Is currently very introverted, saying a
-            prayer, or hoping for enlightenment. Is also used as a “high five”
+            prayer, or hoping for enlightenment. Is also used as a вЂњhigh fiveвЂќ
             or to say thank you.
           </dd>
         </div>
@@ -710,15 +730,14 @@ function App() {
           </dt>
           <dd>
             This is funny! A smiley face, rolling on the floor, laughing. The
-            face is laughing boundlessly. The emoji version of “rofl“. Stands
-            for „rolling on the floor, laughing“.
+            face is laughing boundlessly. The emoji version of вЂњroflвЂњ. Stands
+            for вЂћrolling on the floor, laughingвЂњ.
           </dd>
         </div>
       </dl>
     </div>
   );
 }
-
 export default App;
 
 const emojipedia = [
@@ -727,21 +746,21 @@ const emojipedia = [
     emoji: "??",
     name: "Tense Biceps",
     meaning:
-    "“You can do that!” or “I feel strong!” Arm with tense biceps. Also used in connection with doing sports, e.g. at the gym."
+    "вЂњYou can do that!вЂќ or вЂњI feel strong!вЂќ Arm with tense biceps. Also used in connection with doing sports, e.g. at the gym."
   },
   {
     id: 2,
     emoji: "??",
     name: "Person With Folded Hands",
     meaning:
-    "Two hands pressed together. Is currently very introverted, saying a prayer, or hoping for enlightenment. Is also used as a “high five” or to say thank you."
+    "Two hands pressed together. Is currently very introverted, saying a prayer, or hoping for enlightenment. Is also used as a вЂњhigh fiveвЂќ or to say thank you."
   },
   {
     id: 3,
     emoji: "??",
     name: "Rolling On The Floor, Laughing",
     meaning:
-    "This is funny! A smiley face, rolling on the floor, laughing. The face is laughing boundlessly. The emoji version of “rofl“. Stands for „rolling on the floor, laughing“."
+    "This is funny! A smiley face, rolling on the floor, laughing. The face is laughing boundlessly. The emoji version of вЂњroflвЂњ. Stands for вЂћrolling on the floor, laughingвЂњ."
   }
 ];
 
@@ -750,13 +769,13 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 
 ReactDOM.render(<App />, document.getElementById("root"));
+```
+***
+#### Р”РёРЅР°РјРёС‡РµСЃРєРѕРµ СЃРѕР·РґР°РЅРёРµ РєР°СЂС‚РѕС‡РєРё
+***
 
-===================================
-Динамическое создание карточки
-===================================
-
-1) в app. js
-
+1) РІ app. js
+```
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -778,11 +797,10 @@ content={noteItem.content}
     </div>
   );
 }
-
 export default App;
-
-2) в Note.js
-
+```
+2) РІ Note.js
+```
 import React from "react";
 
 function Note(props) {
@@ -795,15 +813,15 @@ function Note(props) {
 }
 
 export default Note;
-
-3) в notes.js
-
+```
+3) РІ notes.js
+```
 const notes = [
   {
     key: 1,
     title: "Delegation",
     content:
-    "Q. How many programmers does it take to change a light bulb? A. None – It’s a hardware problem"
+    "Q. How many programmers does it take to change a light bulb? A. None вЂ“ ItвЂ™s a hardware problem"
   },
   {
     key: 2,
@@ -826,14 +844,15 @@ const notes = [
 ];
 
 export default notes;
+```
+***
+#### State
+***
+Р§С‚РѕР±С‹ РїСЂРѕРІРµСЂРёС‚СЊ СЃС‚Р°С‚СѓСЃ РёР·РјРµРЅРµРЅРёР№ 
+Рё СЂРµРЅРґРµСЂРёС‚СЊ СЂР°Р·РЅС‹Рµ Р±Р»РѕРєРё СЂР°Р·РјРµС‚РєРё РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЌС‚РѕРіРѕ РµСЃС‚СЊ 2 СЃРїРѕСЃРѕР±Р°
 
-======= State
-
-Чтобы проверить статус изменений 
-и рендерить разные блоки разметки в зависимости от этого есть 2 способа
-
-1) простой функцией
-
+1) РїСЂРѕСЃС‚РѕР№ С„СѓРЅРєС†РёРµР№
+```
 import React from "react";
 var isLoggedIn = false;
 
@@ -859,9 +878,9 @@ function App() {
 }
 
 export default App;
-
+```
 2) 
-
+```
 import React from "react";
 import Login from "./Login";
 
@@ -905,10 +924,12 @@ function Login() {
 }
 
 export default Login;
-
-======= useState
-===Импорт - вариант 1
-
+```
+***
+#### useState
+***
+===РРјРїРѕСЂС‚ - РІР°СЂРёР°РЅС‚ 1
+```
 import React, { useState } from "react";
 
 function App() {
@@ -916,27 +937,28 @@ function App() {
   const state = useState(); 
 
 }
-
-===Импорт - вариант 2
-
+```
+===РРјРїРѕСЂС‚ - РІР°СЂРёР°РЅС‚ 2
+```
 import React from "react";
 
 function App() {
   const state = React.useState(); 
 }
+```
 
 ===================================
-Хуки
+РҐСѓРєРё
 ===================================
 
-В коде ниже
-- загружается useState, с изначально введенными данными 123.
-- эти 123 размещены в переменной count, которая идет передается по названию в h1.
-- во время события onClick на кнопке вызывается функция increase, которая вызывает функцию setCount c заданными числами,
-- при этом функция setCount это название функции в const, а сама функция зашита как вторая в useState, с неопределенным по умолчанию название. Она и изменяет первое значение 123 на 456.
+Р’ РєРѕРґРµ РЅРёР¶Рµ
+- Р·Р°РіСЂСѓР¶Р°РµС‚СЃСЏ useState, СЃ РёР·РЅР°С‡Р°Р»СЊРЅРѕ РІРІРµРґРµРЅРЅС‹РјРё РґР°РЅРЅС‹РјРё 123.
+- СЌС‚Рё 123 СЂР°Р·РјРµС‰РµРЅС‹ РІ РїРµСЂРµРјРµРЅРЅРѕР№ count, РєРѕС‚РѕСЂР°СЏ РїРµСЂРµРґР°РµС‚СЃСЏ РїРѕ РЅР°Р·РІР°РЅРёСЋ РІ h1.
+- РІРѕ РІСЂРµРјСЏ СЃРѕР±С‹С‚РёСЏ onClick РЅР° РєРЅРѕРїРєРµ РІС‹Р·С‹РІР°РµС‚СЃСЏ С„СѓРЅРєС†РёСЏ increase, РєРѕС‚РѕСЂР°СЏ РІС‹Р·С‹РІР°РµС‚ С„СѓРЅРєС†РёСЋ setCount c Р·Р°РґР°РЅРЅС‹РјРё С‡РёСЃР»Р°РјРё,
+- РїСЂРё СЌС‚РѕРј С„СѓРЅРєС†РёСЏ setCount СЌС‚Рѕ РЅР°Р·РІР°РЅРёРµ С„СѓРЅРєС†РёРё РІ const, Р° СЃР°РјР° С„СѓРЅРєС†РёСЏ Р·Р°С€РёС‚Р° РєР°Рє РІС‚РѕСЂР°СЏ РІ useState, СЃ РЅРµРѕРїСЂРµРґРµР»РµРЅРЅС‹Рј РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РЅР°Р·РІР°РЅРёРµ. РћРЅР° Рё РёР·РјРµРЅСЏРµС‚ РїРµСЂРІРѕРµ Р·РЅР°С‡РµРЅРёРµ 123 РЅР° 456.
 
-"в функциональных компонентах в React хук useState возвращает [твоё значение, и функцию для его изменения] и менять нужно всегда через функцию в твоём примере (setCount)"
-
+"РІ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅС‹С… РєРѕРјРїРѕРЅРµРЅС‚Р°С… РІ React С…СѓРє useState РІРѕР·РІСЂР°С‰Р°РµС‚ [С‚РІРѕС‘ Р·РЅР°С‡РµРЅРёРµ, Рё С„СѓРЅРєС†РёСЋ РґР»СЏ РµРіРѕ РёР·РјРµРЅРµРЅРёСЏ] Рё РјРµРЅСЏС‚СЊ РЅСѓР¶РЅРѕ РІСЃРµРіРґР° С‡РµСЂРµР· С„СѓРЅРєС†РёСЋ РІ С‚РІРѕС‘Рј РїСЂРёРјРµСЂРµ (setCount)"
+```
 import React from "react";
 
 function App() {
@@ -957,9 +979,9 @@ return(
 }
 
 export default App;
-
-=======Код полный с урока=======
-
+```
+=======РљРѕРґ РїРѕР»РЅС‹Р№=======
+```
 import React, { useState } from "react";
 
 function App() {
@@ -983,11 +1005,11 @@ function App() {
 }
 
 export default App;
-
-======= Практика useState ========
-Код обновляет время каждую секунду
+```
+======= РџСЂР°РєС‚РёРєР° useState ========
+РљРѕРґ РѕР±РЅРѕРІР»СЏРµС‚ РІСЂРµРјСЏ РєР°Р¶РґСѓСЋ СЃРµРєСѓРЅРґСѓ
 ================================
-
+```
 import React, { useState } from "react";
 
 function App() {
@@ -1011,10 +1033,10 @@ function App() {
 }
 
 export default App;
-
-======= Пример кода с useState =======
-\\ меняет текст в h1
-
+```
+======= РџСЂРёРјРµСЂ РєРѕРґР° СЃ useState =======
+\\ РјРµРЅСЏРµС‚ С‚РµРєСЃС‚ РІ h1
+```
 import React, { useState } from "react";
 
 function App() {
@@ -1035,9 +1057,12 @@ const [headingText, setHeadingText] = useState("Hello");
 }
 
 export default App;
+```
 
-=======  Смена цвета кнопки в зависимости от события =======
-
+***
+РЎРјРµРЅР° С†РІРµС‚Р° РєРЅРѕРїРєРё РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЃРѕР±С‹С‚РёСЏ =======
+***
+```
 import React, { useState } from "react";
 
 function App() {
@@ -1067,16 +1092,16 @@ function returnColorEvent(){
 }
 
 export default App;
+```
+***
+Р¤РѕСЂРјС‹
+***
 
-=======
-Формы
-=======
+РџСЂРё РґРѕР±Р°РІР»РµРЅРёРё СЃРѕР±С‹С‚РёСЏ onChange Рє С„РѕСЂРјРµ РёР»Рё РґСЂСѓРіРёС… РґРµР№СЃС‚РІРёР№ РІ РґРІРёР¶РєРµ РїСЂРё СЂР°Р±РѕС‚Рµ СЃ С„РѕСЂРјРѕР№ СЃРѕР·РґР°РµС‚СЃСЏ РѕР±СЉРµРєС‚.
 
-При добавлении события onChange к форме или других действий в движке при работе с формой создается объект.
-
-Значит, можно использовать методы к объектам.
-К примеру, 
-
+Р—РЅР°С‡РёС‚, РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РјРµС‚РѕРґС‹ Рє РѕР±СЉРµРєС‚Р°Рј.
+Рљ РїСЂРёРјРµСЂСѓ, 
+```
 <input onChange={Change_funct} type="text" place
 
  function Change_funct(event){
@@ -1084,18 +1109,18 @@ export default App;
   console.log(event.target.placeholder);
   console.log(event.target.type);
 }
+```
+Р›РѕРіРёСЂСѓРµС‚ РІРІРµРґРµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј, РїР»РµР№СЃС…РѕР»РґРµСЂ Рё С‚РёРї РґР°РЅРЅС‹С…
 
-Логирует введенные данные пользователем, плейсхолдер и тип данных
+= Р§С‚РѕР±С‹ РІС‹РІРµСЃС‚Рё РІРІРµРґРµРЅРЅС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј РґР°РЅРЅС‹Рµ РЅР° СЃР°Р№С‚, РЅСѓР¶РЅРѕ
+1) СЃРґРµР»Р°С‚СЊ useState
 
-= Чтобы вывести введенные пользователем данные на сайт, нужно
-1) сделать useState
+`const [name, setName] = useState (" ");`
 
-const [name, setName] = useState (" ");
+2) РІ СЂР°Р·РјРµС‚РєСѓ РІ РЅСѓР¶РЅРѕРј РјРµСЃС‚Рµ РґРѕР±Р°РІР»СЏРµРј РїРµСЂРµРјРµРЅРЅСѓСЋ {name}
 
-2) в разметку в нужном месте добавляем переменную {name}
-
-3) в функцию, выполняемую в связи с событием инпута добавляем функцию из useState c event.target.value.
-
+3) РІ С„СѓРЅРєС†РёСЋ, РІС‹РїРѕР»РЅСЏРµРјСѓСЋ РІ СЃРІСЏР·Рё СЃ СЃРѕР±С‹С‚РёРµРј РёРЅРїСѓС‚Р° РґРѕР±Р°РІР»СЏРµРј С„СѓРЅРєС†РёСЋ РёР· useState c event.target.value.
+```
 import React, {useState} from "react";
 
 function App() {
@@ -1120,14 +1145,14 @@ function App() {
 }
 
 export default App;
+```
+РџСЂРё СЌС‚РѕРј РІ СЂРµР°РєС‚Рµ РЅРµРѕР±С…РѕРґРёРјРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РµРґРёРЅРѕРµ РјРµСЃС‚Рѕ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ Р·РЅР°С‡РµРЅРёСЏ РёРЅРїСѓС‚Р°, РІ РІРёРґРµ РїРµСЂРµРјРµРЅРЅРѕР№ РёР· useState (РєРѕРЅС†РµРїС†РёСЏ controlled component).
 
-При этом в реакте необходимо использовать единое место для хранения значения инпута, в виде переменной из useState (концепция controlled component).
-
-======= Для того, чтобы введенное в инпут имя вводилось только после нажатия кнопки необходим следующий код с 2мя useState.
-
-Важно сохранять слушатель onChange, так как ввод идет через него.
+======= Р”Р»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ РІРІРµРґРµРЅРЅРѕРµ РІ РёРЅРїСѓС‚ РёРјСЏ РІРІРѕРґРёР»РѕСЃСЊ С‚РѕР»СЊРєРѕ РїРѕСЃР»Рµ РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё РЅРµРѕР±С…РѕРґРёРј СЃР»РµРґСѓСЋС‰РёР№ РєРѕРґ СЃ 2РјСЏ useState.
+Р’Р°Р¶РЅРѕ СЃРѕС…СЂР°РЅСЏС‚СЊ СЃР»СѓС€Р°С‚РµР»СЊ onChange, С‚Р°Рє РєР°Рє РІРІРѕРґ РёРґРµС‚ С‡РµСЂРµР· РЅРµРіРѕ.
 
 =======
+```
 import React, {useState} from "react";
 
 function App() {
@@ -1157,23 +1182,23 @@ function F_click()
     </div>
   );
 }
-
 export default App;
+```
 =======
 
-Если инпут будет обернут в тэг <form/>, на которую создан слушатель F_click (а не на инпут), то следует использовать следующий метод. 
-Это необходимо так как стандартное поведение формы это перезагрузка формы после введения в нее данных.
-
+Р•СЃР»Рё РёРЅРїСѓС‚ Р±СѓРґРµС‚ РѕР±РµСЂРЅСѓС‚ РІ С‚СЌРі <form/>, РЅР° РєРѕС‚РѕСЂСѓСЋ СЃРѕР·РґР°РЅ СЃР»СѓС€Р°С‚РµР»СЊ F_click (Р° РЅРµ РЅР° РёРЅРїСѓС‚), С‚Рѕ СЃР»РµРґСѓРµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЃР»РµРґСѓСЋС‰РёР№ РјРµС‚РѕРґ. 
+Р­С‚Рѕ РЅРµРѕР±С…РѕРґРёРјРѕ С‚Р°Рє РєР°Рє СЃС‚Р°РЅРґР°СЂС‚РЅРѕРµ РїРѕРІРµРґРµРЅРёРµ С„РѕСЂРјС‹ СЌС‚Рѕ РїРµСЂРµР·Р°РіСЂСѓР·РєР° С„РѕСЂРјС‹ РїРѕСЃР»Рµ РІРІРµРґРµРЅРёСЏ РІ РЅРµРµ РґР°РЅРЅС‹С….
+```
 function F_click(event) 
 {
     F_updateHeadText(V_name);
     event.preventDefault();
 }
+```
+======= Р—Р°РґР°РЅРёРµ РїРѕ РѕР±РЅРѕРІР»РµРЅРёСЋ РїРµСЂРІРѕРіРѕ Рё РІС‚РѕСЂРѕРіРѕ РёРјРµРЅРё РїРѕ СЃРѕР±С‹С‚РёСЋ onSubmit =======
 
-======= Задание по обновлению первого и второго имени по событию onSubmit =======
-
-\\ Подробный вариант
-
+\\ РџРѕРґСЂРѕР±РЅС‹Р№ РІР°СЂРёР°РЅС‚
+```
 import React, { useState } from "react";
 
 function App() {
@@ -1220,9 +1245,9 @@ function App() {
 }
 
 export default App;
-
-\\ Короткий вариант (использование объектов в качестве параметра useState и единой функции для обновления их значений). JS распознает какой именно инпут был изменен через event.target.name (const inputName = event.target.name). Однако, реакт рендерит заново все инпуты, заменяя первый вторым и наоборот и через простую функцию if else решить проблему не получится. Следует запоминать "старое название" не измененного инпута, и устаналивать новое для нужного. Конструкция выглядит следующим образом (с деструктуризацией переменной в виде объекта)
-
+```
+\\ РљРѕСЂРѕС‚РєРёР№ РІР°СЂРёР°РЅС‚ (РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РѕР±СЉРµРєС‚РѕРІ РІ РєР°С‡РµСЃС‚РІРµ РїР°СЂР°РјРµС‚СЂР° useState Рё РµРґРёРЅРѕР№ С„СѓРЅРєС†РёРё РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ РёС… Р·РЅР°С‡РµРЅРёР№). JS СЂР°СЃРїРѕР·РЅР°РµС‚ РєР°РєРѕР№ РёРјРµРЅРЅРѕ РёРЅРїСѓС‚ Р±С‹Р» РёР·РјРµРЅРµРЅ С‡РµСЂРµР· event.target.name (const inputName = event.target.name). РћРґРЅР°РєРѕ, СЂРµР°РєС‚ СЂРµРЅРґРµСЂРёС‚ Р·Р°РЅРѕРІРѕ РІСЃРµ РёРЅРїСѓС‚С‹, Р·Р°РјРµРЅСЏСЏ РїРµСЂРІС‹Р№ РІС‚РѕСЂС‹Рј Рё РЅР°РѕР±РѕСЂРѕС‚ Рё С‡РµСЂРµР· РїСЂРѕСЃС‚СѓСЋ С„СѓРЅРєС†РёСЋ if else СЂРµС€РёС‚СЊ РїСЂРѕР±Р»РµРјСѓ РЅРµ РїРѕР»СѓС‡РёС‚СЃСЏ. РЎР»РµРґСѓРµС‚ Р·Р°РїРѕРјРёРЅР°С‚СЊ "СЃС‚Р°СЂРѕРµ РЅР°Р·РІР°РЅРёРµ" РЅРµ РёР·РјРµРЅРµРЅРЅРѕРіРѕ РёРЅРїСѓС‚Р°, Рё СѓСЃС‚Р°РЅР°Р»РёРІР°С‚СЊ РЅРѕРІРѕРµ РґР»СЏ РЅСѓР¶РЅРѕРіРѕ. РљРѕРЅСЃС‚СЂСѓРєС†РёСЏ РІС‹РіР»СЏРґРёС‚ СЃР»РµРґСѓСЋС‰РёРј РѕР±СЂР°Р·РѕРј (СЃ РґРµСЃС‚СЂСѓРєС‚СѓСЂРёР·Р°С†РёРµР№ РїРµСЂРµРјРµРЅРЅРѕР№ РІ РІРёРґРµ РѕР±СЉРµРєС‚Р°)
+```
 import React, { useState } from "react";
 
 function App() {
@@ -1274,9 +1299,9 @@ function App() {
 }
 
 export default App;
-
-======= Обновление 3х инпутов
-
+```
+======= РћР±РЅРѕРІР»РµРЅРёРµ 3С… РёРЅРїСѓС‚РѕРІ
+```
 import React, { useState } from "react";
 
 function App() {
@@ -1344,14 +1369,14 @@ function App() {
 }
 
 export default App;
-
-========
+```
+***
 spreadOperator
-========
-сокращенный код с использованием оператора выглядит так:
-prevValue - это объект, поэтому он позволяет дополнить его через оператор прошлый значением, добавив
-новое название там где оно необходимо.
-
+***
+СЃРѕРєСЂР°С‰РµРЅРЅС‹Р№ РєРѕРґ СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј РѕРїРµСЂР°С‚РѕСЂР° РІС‹РіР»СЏРґРёС‚ С‚Р°Рє:
+prevValue - СЌС‚Рѕ РѕР±СЉРµРєС‚, РїРѕСЌС‚РѕРјСѓ РѕРЅ РїРѕР·РІРѕР»СЏРµС‚ РґРѕРїРѕР»РЅРёС‚СЊ РµРіРѕ С‡РµСЂРµР· РѕРїРµСЂР°С‚РѕСЂ РїСЂРѕС€Р»С‹Р№ Р·РЅР°С‡РµРЅРёРµРј, РґРѕР±Р°РІРёРІ
+РЅРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ С‚Р°Рј РіРґРµ РѕРЅРѕ РЅРµРѕР±С…РѕРґРёРјРѕ.
+```
 import React, { useState } from "react";
 
 function App() {
@@ -1404,11 +1429,11 @@ return (
 }
 
 export default App;
-
+```
 =============
-Создание  toDoList с добавление новых элементов при нажатии на кнопку
+РЎРѕР·РґР°РЅРёРµ  toDoList СЃ РґРѕР±Р°РІР»РµРЅРёРµ РЅРѕРІС‹С… СЌР»РµРјРµРЅС‚РѕРІ РїСЂРё РЅР°Р¶Р°С‚РёРё РЅР° РєРЅРѕРїРєСѓ
 =============
-
+```
 import React, {useState} from "react";
 
 function App() {
@@ -1419,12 +1444,12 @@ const [V_valueOnClick, F_setNewToDo] = useState([]);
 function F_setOnChange (event) {
   F_setValue(event.target.value);
 } 
-
-\\ ниже spread функция, сохраняет  в массиве старое значение prevItems, которое находится в функции 
-\\ F_setNewToDo исходная переменная которого  - в V_valueOnClick, и добавляет новое значение из переменной 
+```
+\\ РЅРёР¶Рµ spread С„СѓРЅРєС†РёСЏ, СЃРѕС…СЂР°РЅСЏРµС‚  РІ РјР°СЃСЃРёРІРµ СЃС‚Р°СЂРѕРµ Р·РЅР°С‡РµРЅРёРµ prevItems, РєРѕС‚РѕСЂРѕРµ РЅР°С…РѕРґРёС‚СЃСЏ РІ С„СѓРЅРєС†РёРё 
+\\ F_setNewToDo РёСЃС…РѕРґРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РєРѕС‚РѕСЂРѕРіРѕ  - РІ V_valueOnClick, Рё РґРѕР±Р°РІР»СЏРµС‚ РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РёР· РїРµСЂРµРјРµРЅРЅРѕР№ 
 \\ V_inputText
-\\ F_setValue(""); в конце функции очищает инпут от введенных значений.
-
+\\ F_setValue(""); РІ РєРѕРЅС†Рµ С„СѓРЅРєС†РёРё РѕС‡РёС‰Р°РµС‚ РёРЅРїСѓС‚ РѕС‚ РІРІРµРґРµРЅРЅС‹С… Р·РЅР°С‡РµРЅРёР№.
+```
 function F_addItemOnClick (event){
   F_setNewToDo( (prevItems) => {
     return [...prevItems, V_inputText]
@@ -1448,7 +1473,7 @@ function F_addItemOnClick (event){
       </div>
       <div>
         <ul>
-        \\ стрелочная функция map
+        \\ СЃС‚СЂРµР»РѕС‡РЅР°СЏ С„СѓРЅРєС†РёСЏ map
          {V_valueOnClick.map(V_valueOnClickItem => <li>{V_valueOnClickItem}</li>)}
         </ul>
       </div>
@@ -1457,12 +1482,13 @@ function F_addItemOnClick (event){
 }
 
 export default App;
+```
+***
+РЎРѕР·РґР°РЅРёРµ РєРѕРјРїР»РµРєСЃР° РєРѕРјРїРѕРЅРµРЅС‚РѕРІ
+***
 
-=======
-Создание комплекса компонентов
-=======
-
-Функционал зачеркивания слова при клике на него
+Р¤СѓРЅРєС†РёРѕРЅР°Р» Р·Р°С‡РµСЂРєРёРІР°РЅРёСЏ СЃР»РѕРІР° РїСЂРё РєР»РёРєРµ РЅР° РЅРµРіРѕ
+```
 import React, {useState} from "react";
 
 ======= APP.jsx =======
@@ -1530,9 +1556,9 @@ function TodoItem(props)
   > {props.text} </li>)
 }
 export default TodoItem;
-
-======= Для удаления компонента из массива
-
+```
+======= Р”Р»СЏ СѓРґР°Р»РµРЅРёСЏ РєРѕРјРїРѕРЅРµРЅС‚Р° РёР· РјР°СЃСЃРёРІР°
+```
 ======= APP.jsx =======
 
 import React, { useState } from "react";
@@ -1605,12 +1631,12 @@ function TodoItem(props){
 }
 
 export default TodoItem;
-
+```
 
 ============
-Практика использования дерева компонентов
+РџСЂР°РєС‚РёРєР° РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РґРµСЂРµРІР° РєРѕРјРїРѕРЅРµРЅС‚РѕРІ
 ============
-
+```
 ======= App.jsx =======
 
 import React, { useState } from "react";
@@ -1686,11 +1712,10 @@ function InputArea(props) {
 }
 
 export default InputArea;
-
+```
 ======= ToDoItem =======
-\\ использование функции в диве позволяет не вызывать функцию сразу как только див будет прочитан, а
-только с момента его задействования в результате события
-
+\\ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ С„СѓРЅРєС†РёРё РІ РґРёРІРµ РїРѕР·РІРѕР»СЏРµС‚ РЅРµ РІС‹Р·С‹РІР°С‚СЊ С„СѓРЅРєС†РёСЋ СЃСЂР°Р·Сѓ РєР°Рє С‚РѕР»СЊРєРѕ РґРёРІ Р±СѓРґРµС‚ РїСЂРѕС‡РёС‚Р°РЅ, Р° С‚РѕР»СЊРєРѕ СЃ РјРѕРјРµРЅС‚Р° РµРіРѕ Р·Р°РґРµР№СЃС‚РІРѕРІР°РЅРёСЏ РІ СЂРµР·СѓР»СЊС‚Р°С‚Рµ СЃРѕР±С‹С‚РёСЏ
+```
 import React from "react";
 
 function ToDoItem(props) {
@@ -1706,11 +1731,11 @@ function ToDoItem(props) {
 }
 
 export default ToDoItem;
-
+```
 ==================================
-keepeApp 3 - стадия разработки
+keeperApp 3 - СЃС‚Р°РґРёСЏ СЂР°Р·СЂР°Р±РѕС‚РєРё
 ==================================
-Задача
+Р—Р°РґР°С‡Р°
 
 //CHALLENGE:
 //1. Implement the add note functionality.
@@ -1727,8 +1752,8 @@ keepeApp 3 - стадия разработки
 //This is the end result you're aiming for:
 //https://pogqj.csb.app/
 
-Исходный код
-
+РСЃС…РѕРґРЅС‹Р№ РєРѕРґ
+```
 [1] app.jsx
 
 import React from "react";
@@ -1812,25 +1837,25 @@ function Note(props) {
 }
 
 export default Note;
-
+```
 1 //- Create a constant that keeps track of the title and content.
-//Создать переменную, которвая отслеживает изменения. 
-В компоненте (!)
+//РЎРѕР·РґР°С‚СЊ РїРµСЂРµРјРµРЅРЅСѓСЋ, РєРѕС‚РѕСЂРІР°СЏ РѕС‚СЃР»РµР¶РёРІР°РµС‚ РёР·РјРµРЅРµРЅРёСЏ. 
+Р’ РєРѕРјРїРѕРЅРµРЅС‚Рµ (!)
 
-- Создается в виде объекта, так как в этом объекте 2 значения - тайтл и контент.
-В противном случае создавать придется 2 переменные. 
+- РЎРѕР·РґР°РµС‚СЃСЏ РІ РІРёРґРµ РѕР±СЉРµРєС‚Р°, С‚Р°Рє РєР°Рє РІ СЌС‚РѕРј РѕР±СЉРµРєС‚Рµ 2 Р·РЅР°С‡РµРЅРёСЏ - С‚Р°Р№С‚Р» Рё РєРѕРЅС‚РµРЅС‚.
+Р’ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ СЃРѕР·РґР°РІР°С‚СЊ РїСЂРёРґРµС‚СЃСЏ 2 РїРµСЂРµРјРµРЅРЅС‹Рµ. 
 
-- передается в разметку в виде note.title и note.content  
+- РїРµСЂРµРґР°РµС‚СЃСЏ РІ СЂР°Р·РјРµС‚РєСѓ РІ РІРёРґРµ note.title Рё note.content  
 
-- создается слушатель onChange и функция для изменения этих переменных, 
-function F_change(event). Функция передается в onChange в разметке. В качестве параметра - event
+- СЃРѕР·РґР°РµС‚СЃСЏ СЃР»СѓС€Р°С‚РµР»СЊ onChange Рё С„СѓРЅРєС†РёСЏ РґР»СЏ РёР·РјРµРЅРµРЅРёСЏ СЌС‚РёС… РїРµСЂРµРјРµРЅРЅС‹С…, 
+function F_change(event). Р¤СѓРЅРєС†РёСЏ РїРµСЂРµРґР°РµС‚СЃСЏ РІ onChange РІ СЂР°Р·РјРµС‚РєРµ. Р’ РєР°С‡РµСЃС‚РІРµ РїР°СЂР°РјРµС‚СЂР° - event
 
-- создается деструктуризированный объект 
+- СЃРѕР·РґР°РµС‚СЃСЏ РґРµСЃС‚СЂСѓРєС‚СѓСЂРёР·РёСЂРѕРІР°РЅРЅС‹Р№ РѕР±СЉРµРєС‚ 
 const { name, value } = event.target;
 
-- в функции F_change вызывается функция setNote (useState).
-в ней указывается 
-
+- РІ С„СѓРЅРєС†РёРё F_change РІС‹Р·С‹РІР°РµС‚СЃСЏ С„СѓРЅРєС†РёСЏ setNote (useState).
+РІ РЅРµР№ СѓРєР°Р·С‹РІР°РµС‚СЃСЏ 
+```
 setNote(prevNote => 
 {
     return 
@@ -1839,12 +1864,12 @@ setNote(prevNote =>
     [name]: value
     };
 }
-
-в данном случае устанавливается предыдущий note (prevNote),
-возвращается существующий компонент Note,
-где через spread оператор возвращаются уже записанные компоненты Note (...prevNote,), 
-затем новая запись переменной name (в квадратных скобках пишется в виду требований синтаксиса) и ей устанавливатеся значение value из event.target.
-
+```
+РІ РґР°РЅРЅРѕРј СЃР»СѓС‡Р°Рµ СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ РїСЂРµРґС‹РґСѓС‰РёР№ note (prevNote),
+РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёР№ РєРѕРјРїРѕРЅРµРЅС‚ Note,
+РіРґРµ С‡РµСЂРµР· spread РѕРїРµСЂР°С‚РѕСЂ РІРѕР·РІСЂР°С‰Р°СЋС‚СЃСЏ СѓР¶Рµ Р·Р°РїРёСЃР°РЅРЅС‹Рµ РєРѕРјРїРѕРЅРµРЅС‚С‹ Note (...prevNote,), 
+Р·Р°С‚РµРј РЅРѕРІР°СЏ Р·Р°РїРёСЃСЊ РїРµСЂРµРјРµРЅРЅРѕР№ name (РІ РєРІР°РґСЂР°С‚РЅС‹С… СЃРєРѕР±РєР°С… РїРёС€РµС‚СЃСЏ РІ РІРёРґСѓ С‚СЂРµР±РѕРІР°РЅРёР№ СЃРёРЅС‚Р°РєСЃРёСЃР°) Рё РµР№ СѓСЃС‚Р°РЅР°РІР»РёРІР°С‚РµСЃСЏ Р·РЅР°С‡РµРЅРёРµ value РёР· event.target.
+```
 //CreateArea.jsx
 
 import React from "react";
@@ -1889,28 +1914,28 @@ function CreateArea() {
 }
 
 export default CreateArea;
-
+```
 2\\ - Pass the new note back to the App.
-Из компонента CreateArea вернуть  данные из созданных переменных в app.jsx.
+РР· РєРѕРјРїРѕРЅРµРЅС‚Р° CreateArea РІРµСЂРЅСѓС‚СЊ  РґР°РЅРЅС‹Рµ РёР· СЃРѕР·РґР°РЅРЅС‹С… РїРµСЂРµРјРµРЅРЅС‹С… РІ app.jsx.
 
-- на button в CreateArea вешается событие onClick при срабатывании которого данные передаются в функцию,которая передает данные в app.jsx - F_submitNote
+- РЅР° button РІ CreateArea РІРµС€Р°РµС‚СЃСЏ СЃРѕР±С‹С‚РёРµ onClick РїСЂРё СЃСЂР°Р±Р°С‚С‹РІР°РЅРёРё РєРѕС‚РѕСЂРѕРіРѕ РґР°РЅРЅС‹Рµ РїРµСЂРµРґР°СЋС‚СЃСЏ РІ С„СѓРЅРєС†РёСЋ,РєРѕС‚РѕСЂР°СЏ РїРµСЂРµРґР°РµС‚ РґР°РЅРЅС‹Рµ РІ app.jsx - F_submitNote
 
-- ей передается параметр event, в первую очередь чтобы использовать прерывание дефолтного поведения формы, которая перезагружается при срабатывании события "event.preventDefault();" в теле функции.
+- РµР№ РїРµСЂРµРґР°РµС‚СЃСЏ РїР°СЂР°РјРµС‚СЂ event, РІ РїРµСЂРІСѓСЋ РѕС‡РµСЂРµРґСЊ С‡С‚РѕР±С‹ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РїСЂРµСЂС‹РІР°РЅРёРµ РґРµС„РѕР»С‚РЅРѕРіРѕ РїРѕРІРµРґРµРЅРёСЏ С„РѕСЂРјС‹, РєРѕС‚РѕСЂР°СЏ РїРµСЂРµР·Р°РіСЂСѓР¶Р°РµС‚СЃСЏ РїСЂРё СЃСЂР°Р±Р°С‚С‹РІР°РЅРёРё СЃРѕР±С‹С‚РёСЏ "event.preventDefault();" РІ С‚РµР»Рµ С„СѓРЅРєС†РёРё.
 
-- чтобы передать данные в app.jsx в нем в компоненте CreateArea создается props (onAdd) со значанием функции F_addNote. Сама функция пишется в app.jsx.
+- С‡С‚РѕР±С‹ РїРµСЂРµРґР°С‚СЊ РґР°РЅРЅС‹Рµ РІ app.jsx РІ РЅРµРј РІ РєРѕРјРїРѕРЅРµРЅС‚Рµ CreateArea СЃРѕР·РґР°РµС‚СЃСЏ props (onAdd) СЃРѕ Р·РЅР°С‡Р°РЅРёРµРј С„СѓРЅРєС†РёРё F_addNote. РЎР°РјР° С„СѓРЅРєС†РёСЏ РїРёС€РµС‚СЃСЏ РІ app.jsx.
 
-- компоненту CreateArea передается параметр (props)
+- РєРѕРјРїРѕРЅРµРЅС‚Сѓ CreateArea РїРµСЂРµРґР°РµС‚СЃСЏ РїР°СЂР°РјРµС‚СЂ (props)
 
-- в app.jsx в функцию F_submitNote передается props.onAdd()
+- РІ app.jsx РІ С„СѓРЅРєС†РёСЋ F_submitNote РїРµСЂРµРґР°РµС‚СЃСЏ props.onAdd()
 
-- в CreateArea.jsx в функции F_submitNote() добавляется props.onAdd(); что означает вызов пропса onAdd c функций внутри, которая в app.jsx выполняет необходимый код (функцию F_addNote).
+- РІ CreateArea.jsx РІ С„СѓРЅРєС†РёРё F_submitNote() РґРѕР±Р°РІР»СЏРµС‚СЃСЏ props.onAdd(); С‡С‚Рѕ РѕР·РЅР°С‡Р°РµС‚ РІС‹Р·РѕРІ РїСЂРѕРїСЃР° onAdd c С„СѓРЅРєС†РёР№ РІРЅСѓС‚СЂРё, РєРѕС‚РѕСЂР°СЏ РІ app.jsx РІС‹РїРѕР»РЅСЏРµС‚ РЅРµРѕР±С…РѕРґРёРјС‹Р№ РєРѕРґ (С„СѓРЅРєС†РёСЋ F_addNote).
 
-- в props.onAdd() в качестве параметра передается текущее значение объекта note ()
+- РІ props.onAdd() РІ РєР°С‡РµСЃС‚РІРµ РїР°СЂР°РјРµС‚СЂР° РїРµСЂРµРґР°РµС‚СЃСЏ С‚РµРєСѓС‰РµРµ Р·РЅР°С‡РµРЅРёРµ РѕР±СЉРµРєС‚Р° note ()
 props.onAdd(note); 
-С этого момент при клике на кнопку объект note передается в app.jsx
+РЎ СЌС‚РѕРіРѕ РјРѕРјРµРЅС‚ РїСЂРё РєР»РёРєРµ РЅР° РєРЅРѕРїРєСѓ РѕР±СЉРµРєС‚ note РїРµСЂРµРґР°РµС‚СЃСЏ РІ app.jsx
 
 //CreateArea.jsx
-
+```
 import React from "react";
 
 function CreateArea(props) {
@@ -1989,12 +2014,12 @@ export default App;
 
 3 // Add new note to an array.
 
-Добавлять новосозданные note в массив
+Р”РѕР±Р°РІР»СЏС‚СЊ РЅРѕРІРѕСЃРѕР·РґР°РЅРЅС‹Рµ note РІ РјР°СЃСЃРёРІ
 
-- в app.jsx создается константа с пустым массивом
+- РІ app.jsx СЃРѕР·РґР°РµС‚СЃСЏ РєРѕРЅСЃС‚Р°РЅС‚Р° СЃ РїСѓСЃС‚С‹Рј РјР°СЃСЃРёРІРѕРј
 const [notes, F_setNotes] = React.useState([]); 
 
--  в созданной ранее функции F_addNote помещается созданный ранее массив и добавляемые в него объекты кодом
+-  РІ СЃРѕР·РґР°РЅРЅРѕР№ СЂР°РЅРµРµ С„СѓРЅРєС†РёРё F_addNote РїРѕРјРµС‰Р°РµС‚СЃСЏ СЃРѕР·РґР°РЅРЅС‹Р№ СЂР°РЅРµРµ РјР°СЃСЃРёРІ Рё РґРѕР±Р°РІР»СЏРµРјС‹Рµ РІ РЅРµРіРѕ РѕР±СЉРµРєС‚С‹ РєРѕРґРѕРј
 
 function F_addNote(newNote)
 {
@@ -2040,11 +2065,11 @@ export default App;
 }
 
 4 //- Take array and render seperate Note components for each item.
-Созданный массив из app.jsx рендерить отдельно в каждом компоненте Note для каждой отдельной карточки.
+РЎРѕР·РґР°РЅРЅС‹Р№ РјР°СЃСЃРёРІ РёР· app.jsx СЂРµРЅРґРµСЂРёС‚СЊ РѕС‚РґРµР»СЊРЅРѕ РІ РєР°Р¶РґРѕРј РєРѕРјРїРѕРЅРµРЅС‚Рµ Note РґР»СЏ РєР°Р¶РґРѕР№ РѕС‚РґРµР»СЊРЅРѕР№ РєР°СЂС‚РѕС‡РєРё.
 
-- через метод map необходимо пройтись по массиву notes
+- С‡РµСЂРµР· РјРµС‚РѕРґ map РЅРµРѕР±С…РѕРґРёРјРѕ РїСЂРѕР№С‚РёСЃСЊ РїРѕ РјР°СЃСЃРёРІСѓ notes
 
-- вместо отдельного статичного компоненте Note ( <Note key={1} title="Note title" content="Note content" />) помещается код 
+- РІРјРµСЃС‚Рѕ РѕС‚РґРµР»СЊРЅРѕРіРѕ СЃС‚Р°С‚РёС‡РЅРѕРіРѕ РєРѕРјРїРѕРЅРµРЅС‚Рµ Note ( <Note key={1} title="Note title" content="Note content" />) РїРѕРјРµС‰Р°РµС‚СЃСЏ РєРѕРґ 
 {notes.map((noteItem) => 
 {
     return <Note
@@ -2096,12 +2121,12 @@ export default App;
 
 //2. Implement the delete note functionality.
 1 //- Callback from the Note component to trigger a delete function.
-Из компонента Note сделать вызов для фиксирования функции delete
+РР· РєРѕРјРїРѕРЅРµРЅС‚Р° Note СЃРґРµР»Р°С‚СЊ РІС‹Р·РѕРІ РґР»СЏ С„РёРєСЃРёСЂРѕРІР°РЅРёСЏ С„СѓРЅРєС†РёРё delete
 
-- в компоненте Note на кнопку требуется поместить обработчик onClick и создать функцию-обработчик
+- РІ РєРѕРјРїРѕРЅРµРЅС‚Рµ Note РЅР° РєРЅРѕРїРєСѓ С‚СЂРµР±СѓРµС‚СЃСЏ РїРѕРјРµСЃС‚РёС‚СЊ РѕР±СЂР°Р±РѕС‚С‡РёРє onClick Рё СЃРѕР·РґР°С‚СЊ С„СѓРЅРєС†РёСЋ-РѕР±СЂР°Р±РѕС‚С‡РёРє
 
-- в app.jsx требуется создать функцию, которая будет удалять компонент исходя из его id (F_deleteNote)
-F_deleteNote передается через пропс onDelete в коде, который использует метод map для прохода через массив notes 
+- РІ app.jsx С‚СЂРµР±СѓРµС‚СЃСЏ СЃРѕР·РґР°С‚СЊ С„СѓРЅРєС†РёСЋ, РєРѕС‚РѕСЂР°СЏ Р±СѓРґРµС‚ СѓРґР°Р»СЏС‚СЊ РєРѕРјРїРѕРЅРµРЅС‚ РёСЃС…РѕРґСЏ РёР· РµРіРѕ id (F_deleteNote)
+F_deleteNote РїРµСЂРµРґР°РµС‚СЃСЏ С‡РµСЂРµР· РїСЂРѕРїСЃ onDelete РІ РєРѕРґРµ, РєРѕС‚РѕСЂС‹Р№ РёСЃРїРѕР»СЊР·СѓРµС‚ РјРµС‚РѕРґ map РґР»СЏ РїСЂРѕС…РѕРґР° С‡РµСЂРµР· РјР°СЃСЃРёРІ notes 
       {notes.map((noteItem) => 
       {
             return <Note
@@ -2111,17 +2136,17 @@ F_deleteNote передается через пропс onDelete в коде, который использует метод ma
             />
      })}
 
-- в Note jsx в функции F_handleClick добавляется вызов пропса props.onDelete(), которая выполняется в app.jsx
--  в app.jsx в функции F_deleteNote вызывается функция setNotes с предыдущими notes и функцией filter 
-(принимает в себя 3 аргумента
+- РІ Note jsx РІ С„СѓРЅРєС†РёРё F_handleClick РґРѕР±Р°РІР»СЏРµС‚СЃСЏ РІС‹Р·РѕРІ РїСЂРѕРїСЃР° props.onDelete(), РєРѕС‚РѕСЂР°СЏ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ РІ app.jsx
+-  РІ app.jsx РІ С„СѓРЅРєС†РёРё F_deleteNote РІС‹Р·С‹РІР°РµС‚СЃСЏ С„СѓРЅРєС†РёСЏ setNotes СЃ РїСЂРµРґС‹РґСѓС‰РёРјРё notes Рё С„СѓРЅРєС†РёРµР№ filter 
+(РїСЂРёРЅРёРјР°РµС‚ РІ СЃРµР±СЏ 3 Р°СЂРіСѓРјРµРЅС‚Р°
 let newArray = arr.filter(callback(element[, index, [array]])[, thisArg])
 element
-Текущий обрабатываемый элемент в массиве.
-indexНеобязательный
-Индекс текущего обрабатываемого элемента в массиве.
-arrayНеобязательный
-Массив, по которому осуществляется проход.)
-В коде это:
+РўРµРєСѓС‰РёР№ РѕР±СЂР°Р±Р°С‚С‹РІР°РµРјС‹Р№ СЌР»РµРјРµРЅС‚ РІ РјР°СЃСЃРёРІРµ.
+indexРќРµРѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№
+РРЅРґРµРєСЃ С‚РµРєСѓС‰РµРіРѕ РѕР±СЂР°Р±Р°С‚С‹РІР°РµРјРѕРіРѕ СЌР»РµРјРµРЅС‚Р° РІ РјР°СЃСЃРёРІРµ.
+arrayРќРµРѕР±СЏР·Р°С‚РµР»СЊРЅС‹Р№
+РњР°СЃСЃРёРІ, РїРѕ РєРѕС‚РѕСЂРѕРјСѓ РѕСЃСѓС‰РµСЃС‚РІР»СЏРµС‚СЃСЏ РїСЂРѕС…РѕРґ.)
+Р’ РєРѕРґРµ СЌС‚Рѕ:
 
 function F_deleteNote(id)
 {
@@ -2132,7 +2157,7 @@ function F_deleteNote(id)
     })
 }
 
-- в создаваемый Note добавляется параметр key и id - для того, чтобы связать id элемента и ключ, по которому можно будет его идентифицировать. 
+- РІ СЃРѕР·РґР°РІР°РµРјС‹Р№ Note РґРѕР±Р°РІР»СЏРµС‚СЃСЏ РїР°СЂР°РјРµС‚СЂ key Рё id - РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ СЃРІСЏР·Р°С‚СЊ id СЌР»РµРјРµРЅС‚Р° Рё РєР»СЋС‡, РїРѕ РєРѕС‚РѕСЂРѕРјСѓ РјРѕР¶РЅРѕ Р±СѓРґРµС‚ РµРіРѕ РёРґРµРЅС‚РёС„РёС†РёСЂРѕРІР°С‚СЊ. 
 
 // app.jsx
 
@@ -2208,8 +2233,8 @@ function F_handleClick()
 export default Note;
 
 3 //- Pass a id over to the Note component, pass it back to the App when deleting.
-- id создается внутри функции map, которая поддерживает возможность создания id при переборе.
-- в app.jsx вводится переменная index. которая является id и ключом для компонента Note
+- id СЃРѕР·РґР°РµС‚СЃСЏ РІРЅСѓС‚СЂРё С„СѓРЅРєС†РёРё map, РєРѕС‚РѕСЂР°СЏ РїРѕРґРґРµСЂР¶РёРІР°РµС‚ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ СЃРѕР·РґР°РЅРёСЏ id РїСЂРё РїРµСЂРµР±РѕСЂРµ.
+- РІ app.jsx РІРІРѕРґРёС‚СЃСЏ РїРµСЂРµРјРµРЅРЅР°СЏ index. РєРѕС‚РѕСЂР°СЏ СЏРІР»СЏРµС‚СЃСЏ id Рё РєР»СЋС‡РѕРј РґР»СЏ РєРѕРјРїРѕРЅРµРЅС‚Р° Note
 {notes.map((noteItem, index) => 
       {
             return <Note
@@ -2220,14 +2245,14 @@ export default Note;
             />
      })}
 
-- в Notes.jsx в функции F_handleClick() передается пропс с id    
+- РІ Notes.jsx РІ С„СѓРЅРєС†РёРё F_handleClick() РїРµСЂРµРґР°РµС‚СЃСЏ РїСЂРѕРїСЃ СЃ id    
 function F_handleClick()
 {
     props.onDelete(props.id);
 }
 
-- чтобы очистить поле ввода после нажатия кнопки в компонетне CreateArea в функции 
-F_submitNote передается после нажатия пустой объект
+- С‡С‚РѕР±С‹ РѕС‡РёСЃС‚РёС‚СЊ РїРѕР»Рµ РІРІРѕРґР° РїРѕСЃР»Рµ РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРєРё РІ РєРѕРјРїРѕРЅРµС‚РЅРµ CreateArea РІ С„СѓРЅРєС†РёРё 
+F_submitNote РїРµСЂРµРґР°РµС‚СЃСЏ РїРѕСЃР»Рµ РЅР°Р¶Р°С‚РёСЏ РїСѓСЃС‚РѕР№ РѕР±СЉРµРєС‚
 
   function F_submitNote(event)
   {
@@ -2239,11 +2264,11 @@ F_submitNote передается после нажатия пустой объект
     });
     event.preventDefault;
   }
-  
+  ```
 ============
-ПОЛНЫЙ КОД
+РџРћР›РќР«Р™ РљРћР”
 ============
-
+```
 // app.jsx
 
 import React, { useState } from "react";
@@ -2364,5 +2389,5 @@ function Note(props) {
 }
 
 export default Note;
-
+```
 
