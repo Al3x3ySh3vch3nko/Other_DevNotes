@@ -1,350 +1,546 @@
-������ ������������� API � ��������� ���-������ GET
+***
+## NODE JS
+***
 
-
+// ******* Определение переменных
+```
 const express = require("express");
-const https = require("https"); 
-
+const bodyParser = require("body-parser");
+const ejs = require("ejs");
+const mongoose = require("mongoose");
+```
+// ******* Технический код модулей
 const app = express();
-
-app.get("/", function(req, res)
-{
-const url = "https://api.openweathermap.org/data/2.5/weather?q=Moscow&appid=483db3d642c24875f26393fe146c4492&units=metric"; 
-
-https.get(url,function(response) 
-{
-    console.log(response.statusCode)
-
-    response.on("data", function(data)
-    {
-    const weatherData = JSON.parse(data);
-    const temp = weatherData.main.temp;
-    const weatherDescription = weatherData.weather[0].description;
-    const icon = weatherData.weather[0].icon;
-    const imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-    res.write("<p>The weather is " + weatherDescription + "</p>");
-    res.write("<h1>Temperature is" + temp + "</h1>");
-    res.write("<img src="+ imageURL +">");
-    res.send();    
-    })
-})
-});
-
-app.listen(3000, function()
-{
-console.log("Server is on 3000");
-}); 
-
-
-* ����� ������� � ������� ������-��� �����
-https.get(url,function(response) 
-{
-    console.log(response.statusCode);
-})
-
-
-*******
-
-const express = require("express");
-const https = require("https"); 
-const bodyParser = require("body-parser"); 
-
-const app = express();
-
-app.use(bodyParser.urlencoded({extended: true}));
-
-app.get("/", function(req, res)
-{
-    res.sendFile(__dirname + "/index.html");
-});
-
-app.post("/", function(req, res)
-{
-const query = req.body.cityName;
-const APIKey = "483db3d642c24875f26393fe146c4492";
-const unit = "metric"; 
-const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&appid=" + APIKey + "&units=" + unit; 
-
-https.get(url,function(response) 
-{
-console.log(response.statusCode);
-
-    response.on("data", function(data)
-    {
-    const weatherData = JSON.parse(data);
-    const temp = weatherData.main.temp;
-    const weatherDescription = weatherData.weather[0].description;
-    const icon = weatherData.weather[0].icon;
-    const imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-    res.write("<p>The weather is " + weatherDescription + "</p>");
-    res.write("<h1>Temperature in" + query + "is " + temp + "</h1>");
-    res.write("<img src=" + imageURL + ">");
-    res.send();    
-    });
-});    
-})
-
-app.listen(3000, function()
-{
-console.log("Server is on localhost:3000");
-}); 
-
-
-***
-
-*��� ����, ����� �������� ������ ���������� ��� �������� �� ������� ����� ��� � � ��������� ������ 
-������� ������������ ������� express - static
-
-app.use(express.static("public"));
-
-* ����� ��������� ���������� � ����� ������� public � � ��� ��������� ������ ���������� css � � ��� ���������� ���� style.css � ����� � �������
-
-* � ����� html ��� ������������� ��������������� ���� � ������������ ������, ��� ��� ����� ������� ��� ���� �� �� ���� ��� � ����� public
-
-�� ����
-
-<link href="css/style.css" rel="stylesheet">
-
-* ����� ������ ��������� ��������� ����
-
-<form action="/" class="form-signin" method="POST">
-
-***
-��� �������� ������������ � ������� 
-
-https://mailchimp.com/
-
-* ������������ ����.
-
-* ��������� ID �����.
-
-* ��. � ������������. � �������
-
-��������� ���������� � ���� ������� � ������ ������ - ������. ��� ��� � app.post
-
-var data = 
-{
-members: 
-[{ 
-email_adress: email,
-status: "subscribed",
-merge_fields: 
-    {
-    FNAME: FirstName,
-    LNAME: LastName,
-    }
-}]
-}
-
-* ����� - ����������� � ������ JSON:
-
-var jsonData = JSON.stringify(data);
-
-***
-
-������ ���:
-
-app.post("/", function(req, res)
-{
-const FirstName = req.body.Name1;
-const LastName = req.body.Name2;
-const Email = req.body.Email;
-
-const data = 
-{
-members: 
-[{ 
-email_adress: email,
-status: "subscribed",
-merge_fields: 
-    {
-    FNAME: FirstName,
-    LNAME: LastName,
-    }
-}]
-}
-
-var jsonData = JSON.stringify(data);
-
-console.log(FirstName, LastName, Email);
-});
-
-* ����� ��������������� ����� https
-
-const https = require("https");
-
-* ��� jsonData ������������� ���
-
-const url = "https://usX.api.mailchimp.com/3.0/lists/4061a48e5f";
-
-// ��� � ����� - ID �����. ������ � ������� ���������� ����� �� API �����. 
-
-const url = "https://us19.api.mailchimp.com/3.0/lists/4061a48e5f"; 
-const options = 
-{
-method: "POST",
-auth: "A-10:c66749b2c012fce8feebeb0e9e967ca7-us19",
-}
-
-
-https.request(url, options, function(response)
-{
-response.on("data", function()
-{
-    console.log(JSON.parse(data));
-}
-)
-}
-);
-
-* ����� https.request ��������� ����� ����������, ������� 
-����� ��������� ��� ������
-
-const request = https.request(url, options, function(response)
-{
-response.on("data", function()
-{
-    console.log(JSON.parse(data));
-}
-)
-}
-);
-
-* ����� ����� ����� ���������� ����������� �����
-
-request.write(jsonData);
-
-***
-�������� ������ ���
-
-const express = require("express");
-const bodyParser = require("body-parser"); 
-const request = require("request"); 
-const https = require("https"); 
-
-const app = express();
-
+app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-app.get("/", function(req, res)
+// ******* DB 
+// Соединение
+mongoose.connect("mongodb://localhost:27017/wikiDB", { useNewUrlParser: true, useUnifiedTopology: true });
+// DB Схема
+const postSchema = 
 {
-    res.sendFile(__dirname + "/signup.html");
+    title: String,
+    content: String
+};
+// DB Модель
+const Post = mongoose.model("Post", postSchema);
+
+// ******* Контроль запуска сервера
+app.listen(3000, function() {
+    console.log("Server started on port 3000");
 });
 
+`$ node`
+запуск файла через node
+`node index.js`
+
+***
+#### REPL
+***
+
+Можно писать код, но будет отображаться как в консоли. 
+Зайти в него через команду node
+Появится скобка >, значит, в нем.
+
+> con
+
+Выдает возможные на текущий момент команды
+
+> console.
+
+Все возможности этой команды
+
+> .exit
+Выйти
+
+или 
+***
+ctrl + c
+***
+
+> clear 
+Очистить консоль
+
+* Получение доступа к локальным файлам на компьютере
+
+const fs = require('fs');
+где fs это константа, далее - разрешение на на подключение модуля и название самого модуля.
+
+Для отключения предупреждения в редакторе перед этим кодом добавить комментарий
+
+//jshint esversion:6
+
+*******
+#### Файловая архитектура проекта под NodeJS
+*******
+
+Project Directoty
+|
+|node_modules
+|+public 
+||styles.css
+|+views
+|| +partials
+|| |footer
+|| |header
+||about, home, contact, ect.
+|app.js
+|package.json
+|package-lock.json 
+
+*******
+#### NPM:
+*******
+
+Создание основы
+
+`npm init`
+Запуск npm
+
+Далее указать опционально имя пакета, версию, описание. Entry point - указание на основной файл JS, тестовую команду, репозиторий ГИТ, и пр.
+
+Далее - согласиться.
+
+Создается файл - package.json
+(описание файла npm)
+
+***
+Установка пакетов
+***
+
+* Зайти в нужную директорию с npm init;
+* npm install имя модуля c сайта 
+ (npm install superherous);
+* В json будет добавлена зависимость;
+* В index.js можно удалить внутренний код node и использовать код из описания установщика, 
+который позволяет работать модулю.
+К примеру, 
+var superherous = require("superherous");
+
+***
+## Node Express
+***
+
+Установка
+* Выполнить указанные выше действия 
+
+$ `mkdir myapp`
+$ `cd myapp`
+$ `npm init`
+
+* Указывать при инициализации npm entry point: (index.js) или другой основной файл js в этой директории
+
+* далее `$ npm install express`
+
+* В `index.js` дать разрешение:
+
+const express = require("express");
+
+* Создать переменную
+
+`const app = express();`
+
+* Сделать функцию для портов
+
+`app.listen(3000);`
+
+или для отображения в консоли
+```
+app.listen(3000, function() 
+{
+console.log('Server started on port 3000');
+});
+```
+* Проверить в консоли:
+
+`node index.js`
+
+* Для установки запроса и ответа GET
+
+выше кода app.listen...
+```
+добавить код app.get("/", function (request, response) 
+{
+
+}
+);
+```
+где `/` это домашняя страница
+
+вместо `(request, response) может быть (req, res)`
+
+Пример
+```
+app.get("/", function(req, res) 
+{
+res.send('Hello World');
+});
+```
+Для отправки файла, такого как html следует использовать метод 
+sendFile
+
+Пример:
+```
+app.get("/", function(req, res) 
+{
+res.sendFile(index.html);
+});
+```
+Для загрузки файла в релиз пути к файлу не будет, поэтому вместе с index.html следует использовать 
+переменную `__dirname`
+```
+app.get("/", function(req, res) 
+{
+res.sendFile(__dirname + "index.html");
+}); 
+```
+***
+#### Nodemon - автоматически перезагружает сервер при измененях
+***
+
+* Установка
+
+$ `npm install -g nodemon`
+
+* В необходимой директории запустить
+$ `nodemon index.js`
+
+***
+#### Отправка данных из формы
+***
+
+* Код HTML должен быть следующий
+```
+(1)
+<form action="index.html" method="post">
+    <input type="text" name="num1" placeholder="First number">
+    <input type="text" name="num2" placeholder="Second number">
+    <button type="submit" name="submit">Calculate</button>
+</form>
+```
+ИЛИ
+```
+(2)
+<form action="/" method="post">
+    <input type="text" name="newItem">
+    <button type="submit" name="submit">Add</button>
+</form>
+```
+ИЛИ
+```
+(3)
+<form action="/" method="post">
+    <input type="text" action="compose.ejs" name="postTitle">
+    <button type="submit" name="submit"> Publish </button>
+</form>
+```
+***
+* В index.js добавляется метод post
+```
 app.post("/", function(req, res)
 {
-const FirstName = req.body.Name1;
-const LastName = req.body.Name2;
-const email = req.body.email;
 
-const data = 
-{
-members: 
-[{ 
-email_address: email,
-status: "subscribed",
-merge_fields: 
-    {
-    FNAME: FirstName,
-    LNAME: LastName,
-    }
-}]
-};
+}
+);
+```
+* Устанавливается node модуль bodyparser
+$ `npm install body-parser`
 
-const jsonData = JSON.stringify(data);
+* В index.js устанавливаем разрешение на него
+`const bodyParser = require("body-parser");`
 
-const url = "https://us19.api.mailchimp.com/3.0/lists/4061a48e5f"; 
-const options = 
-{
-method: "POST",
-auth: "A-10:c66749b2c012fce8feebeb0e9e967ca7-us19",
-};
+* Устанавливается переменная 
+`app.use(bodyParser.urlencoded({extended: true}));`
 
-const request = https.request(url, options, function(response)
+После этого будет возможно использовать метод req.body
+
+Для созданной формы пример.
+```
+(1)
+app.post("/", function(req, res)
 {
-response.on("data", function(data)
-{
-    if (response.statusCode === 200)
-    {
-    res.sendFile(__dirname + "/sucess.html")
-    }
-    else
-    {
-    res.sendFile(__dirname + "/failure.html")
-    }
-})
+var num1 = Number(req.body.num1);
+var num2 = Number(req.body.num2);
+
+var result = num1 + num2;
+
+res.send(result);
 });
-
-request.write(jsonData);
-request.end();
-});    
-
-app.post("/failure", function(req, res)
+```
+ИЛИ
+```
+(2)
+app.post("/", function(req, res)
 {
-    req.redirect("/");
+var item = req.body.newItem;
+console.log(item)
+});
+```
+ИЛИ
+```
+(3)
+app.post("/", function(req, res)
+{
+var composeInput = req.body.postTitle;
+res.send(composeInput);
+console.log(composeInput);
+});
+```
+*******
+#### Шаблон для express и body-parser
+*******
+```
+const express = require("express");
+const bodyParser = require("body-parser");
+
+const app = express();
+
+app.get("/", function(req, res)
+{
+res.send("Hello");
 });
 
 app.listen(3000, function()
 {
-console.log("Server is on localhost:3000");
-}); 
-
-// API 
-// c66749b2c012fce8feebeb0e9e967ca7-us19
-
-// List ID
-// 4061a48e5f
-
+console.log("Server started on port 3000");
+});
+```
 *******
-Heroku
+#### Шаблон для отправки html в зависимости от дня недели  
 *******
+```
+const express = require("express");
+const bodyParser = require("body-parser");
 
-https://www.heroku.com/
+const app = express();
 
-* � ��������� ��������
-$ heroku login
-
-* ����� ���� � ������
-
-* � ���� �������� ��� �������� ���� 
-� 3000 �� 
-
-app.listen(process.env.PORT || 3000, function()
+app.get("/", function(req, res)
 {
-console.log("Server is on localhost:3000");
+var today = new Date();
+var currentDay = today.getDay();
+
+if (currentDay === 6 || currentDay === 0)
+{
+    res.sendFile(__dirname + "/weekend.html");
+}
+else
+{
+    res.sendFile(__dirname + "/weekend.html");
+}
 });
 
-* � ���������� ������� �������� ����
-
-$ touch Procfile
-
-* � ��������� Procfile �������� ���
-
-web: node app.js
-
-* ����������� � git
-
-$ git init
-
-$ git add .
-
-$ git commit -m "1st commit"
-
-* ����� ��������� ����� ���������� 
-
-$ heroku create
-
-* ����� - push
-
-$ git push heroku master
-
-
+app.listen(3000, function()
+{
+console.log("Server started on port 3000");
+});
+```
 *******
-RESTful API
+## EJS
 *******
 
-* ����������� � robo 3t
+$ `npm i ejs`
 
-* ��������� �������� ������ mongod
+* Добавить код `app.use("view engine", "ejs")`;
+после констант и после константы express
 
-* ������� ������ - ��. ����
+* Создается новая директория `views` в папке проекта
+
+* В ней создается файл `list.ejs` или другой основной
+
+* В нем помещается весь html код
+
+* Для html кода используется маркер `<%= %>`
+
+* Вместо res.send используется метод `res.render`
+
+*** 
+Пример
+```
+app.get("/", function(req, res)
+{
+var today = new Date();
+var currentDay = today.getDay();
+var day ="";
+```
+// Рабочий или нерабочий день
+// ******************************************************************************
+```
+// if (currentDay === 6 || currentDay === 0)
+// {
+    //     day = "Weekend";
+    //     res.render("list",{kindOfDay: day});
+    // }
+    // else
+    // {
+//     day = "Weekday";
+//     res.render("list",{kindOfDay: day});
+// }
+// ******************************************************************************
+```
+
+// День недели if-else
+// ******************************************************************************
+```
+// if (currentDay === 0)
+// {
+    //     day = "ВСКР.";
+    // }
+    // if else (currentDay === 1)
+    // {
+        //     day = "ПН.";
+        // }
+        // if else (currentDay === 2)
+        // {
+            //     day = "ВТ.";
+            // }
+            // if else (currentDay === 3)
+// {
+//     day = "СР.";
+// }
+// if else (currentDay === 4)
+// {
+//     day = "ЧТ.";
+// }
+// if else (currentDay === 5)
+// {
+//     day = "ПТ.";
+// }
+// if else (currentDay === 6)
+// {
+//     day = "СБ.";
+// }
+// ******************************************************************************
+```
+```
+switch (currentDay)
+{
+    case 0:
+    day = "ВСКР.";
+    break;
+    
+    case 1:
+    day = "ПН.";
+    break;
+
+    case 2:
+    day = "ВТ.";
+    break;
+
+    case 3:
+    day = "СР.";
+    break;
+
+    case 4:
+    day = "ЧТ.";
+    break;
+
+    case 5:
+    day = "ПТ.";
+    break;
+
+    case 6:
+    day = "СБ.";
+    break;
+
+    console.log("Error: current day is equal to: " + currentDay);
+}
+
+res.render("list",{kindOfDay: day});
+
+});
+```
+* Для включения JS в HTML следует использовать `<% %>`
+
+* Для включения других статичный файлов в express следует создать папку public, которая будет отслеживаться express
+
+* В app.js следует добавить код отслеживания
+`app.use(express.static("public"));`
+
+***
+Имплементация блоков из разных файлов через EJS (layout)
+***
+
+* Создается соответствующий файл 
+footer.ejs или header.ejs
+
+* В них помещается код, включая открывающийся body в хэдере и закрывающийся body в футере.
+
+* Для включения кода добавляется код в list.ejs 
+<%- include("header") -%>  
+<%- include("footer") -%> 
+
+***
+Создание модулей
+***
+
+* Создается отдельный файл с функцией
+
+* в app.js создается новое разрешение с названием файла, к примеру.
+
+const date = require(__dirname + "date.js");    
+
+* В новом файле создается код экспорта функции. 
+
+К примеру
+
+module.exports = getDate;
+
+function getDate(){
+
+let today = new Date();
+
+let options = 
+{
+    weekday: "long",
+    day: "numeric",
+    month: "long"
+};
+
+let day = today.toLocaleDateString("en-US", options);
+
+return day;
+};
+
+* Вместо module.exports можно использовать exports. 
+
+* Для вызова функции в дальнейшем ее надо писать со скобками
+
+к примеру
+
+let day = getDate();
+
+* Для уточнения экспортируемой функции, чтобы возможно было вызвать несколько функций можно писать
+
+module.exports.getDate = getDate;
+и вторую
+module.exports.getDay = getDay;
+
+и так далее.
+
+* В app.js после этого можно вызывать 
+
+    let day = date.getDate();
+
+    или
+    
+    let day = date.getDay();
+    
+*******
+Часто используемые модули   
+*******
+
+* util для вывода конкретной функции в консоли. К примеру, функция с названием obj
+
+console.log(util.inspect(obj);
+
+* console 
+
+console.log - общий поток
+
+console.error - поток ошибок
+
+* EventEmmiter
+
+var EventEmmiter = require("events").EventEmitter;
