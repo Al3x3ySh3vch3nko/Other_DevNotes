@@ -298,7 +298,7 @@ console.log(`The bill was ${bill}, the tip was ${tip2}, and the total value ${bi
 ```
 
 ***
-__Методы call(), bind(), apply()__ : Эти методы определяют что будет означать по умолчанию this
+#### __Методы call(), bind(), apply()__ : Эти методы определяют что будет означать по умолчанию this
 ***
 
 ```
