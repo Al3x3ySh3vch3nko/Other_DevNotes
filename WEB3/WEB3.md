@@ -48,12 +48,55 @@
 
 [Подготовка локального компьютера для работы с ICP](https://att-c.udemycdn.com/2022-04-06_14-02-04-144a4e33f590c784015435b3d6041a4f/original.pdf?response-content-disposition=attachment%3B+filename%3DInstallation%2Band%2BSetup%2Bfor%2BWindows.pdf&Expires=1651158362&Signature=EU6MG69dFti3xv6A0KbOfYAHc1GmF5X0rzLLSbFFaOEtctT~YHLSFdg4F2DtunMW1Kdl787qcDn~UtGB2w-nrwV3-q-FoYnp4ScWg5ZtYzMzbQOxOIUtuAKTu0vfJhnWgYT2ipCWlXuZq8SsWYzKf7sM2KMBKO6rTrbsM-qQZJBMGdL2ZzFe96vsPsPqFnAEgAji9RFS1y-K6W54rlXrgVp0WFlfzc49WgmgVuE0WdTaWTGYz~jp1Jrf9qo3J1aBOAthW5BBKqyyJ-bEdXeTLcGb3W-g80FcCz1oGnv01Gmqxm8qoStgclVsffwu-qbohf3kzeec7pxzGjm~ELmKvw__&Key-Pair-Id=APKAITJV77WS5ZT7262A)
 
-##DeFi App
+## Motoko
 
-[Используется язык Motoko](https://smartcontracts.org/docs/language-guide/style.html)
+[Для DApps используется язык Motoko](https://smartcontracts.org/docs/language-guide/style.html)
 
-`import Debug "mo:base/Debug"` - для активизации режима разработчика
+`import Debug "mo:base/Debug"` - для активизации режима разработчика. Импортируется соответствующая библиотека
 `Debug.print(debug_show(переменная, не являющаяся текстом))` - для отображения значений не являющихся текстом
 
+Для взаимодействия с канстрами в процессе разработки можно использовать как UI - [Candid](https://smartcontracts.org/docs/candid-guide/candid-concepts.html)
+
+#### Используется концепция "orthogonal persistence" - "ортогональное постоянство"
+При перезапуске канистры\приложения значения сохраняются в том состоянии какое было после всех вычислений с ними
+
+Переменные:
 var - объявление переменной, которая может меняться,
+stable var - объявление переменной, которая может меняться и которая будет "ортогонально постоянной"
+
 let - объявление переменной, которая не может меняться.
+
+Функции:
+func () {
+}; - объявление приватной функции
+
+public func () {
+}; - объявление публичной функции. ; - обязательно после каждой функции
+
+func (параметр: Nat) \\ Nat - тип данных, натуральное число
+
+Операторы:
+:= удалить старое значение, записать новое
++= добавить значение
+-= удалить значение
+
+Состояния и аннотации:
+
+let tempValue: Int = необходимое значание\\ применятся для типизации данных, которые затем используются в функциях. Int - положительные и отрицательные числа
+
+Методы:
+
+1_Update - апдейт состояния. Использует блокчейн, требует подтверждение консенсуса
+> по умолчанию. см. примеры выше 
+
+2_Query - запрос состояния
+
+> Пример создания
+`public query func название функции (): async Nat
+{
+    return значение
+}
+
+$dfx deploy - запуск приложения на локальной машине
+
+##DeFi App
