@@ -2,37 +2,73 @@
 Ссылка: [React form hook](https://react-hook-form.com)
 Ссылка: [react-router](https://reactrouter.com/)
 
-1 Импорт 
-//var React = require('react');
-//var ReactDOM = require('react-dom');
-// устаревшее, можно 
-import React from 'react';
-import ReactDOM from 'react-dom';
+> React разделяет ответственность с помощью слабо связанных единиц, называемых «компоненты», которые содержат и разметку, и логику - вместе.
 
-ReactDOM.render(<h1>Hello There</h1>, document.getElementById('root'));
+> Использует JSX - расширение языка JavaScript. React можно использовать и без JSX.
+JSX допускает использование любых корректных JavaScript-выражений внутри фигурных скобок
+После компиляции каждое JSX-выражение становится обычным вызовом JavaScript-функции, результат которого — объект JavaScript.
+Из этого следует, что JSX можно использовать внутри инструкций if и циклов for, присваивать переменным, передавать функции в качестве аргумента и возвращать из функции.
+
+#### Babel компилирует JSX в вызовы React.createElement().
+В результате получается подобный объект. Эти объекты называются React-элементами. 
+React читает эти объекты и использует их, чтобы конструировать и поддерживать DOM. 
+В отличие от DOM-элементов, элементы React — это простые объекты, не отнимающие много ресурсов. React DOM обновляет DOM, чтобы он соответствовал переданным React-элементам. 
+Элементы — это то, «из чего сделаны» компоненты.
+Элементы React иммутабельны.
+
+
+```
+const element = {
+  type: 'h1',
+  props: {
+    className: 'greeting',
+    children: 'Привет, мир!'
+  }
+};
+```
+
+#### Рендеринг:
+Обычно в приложениях, написанных полностью на React, есть только один корневой элемент. 
+Для рендеринга React-элемента в корневой узел DOM - вызов ReactDOM.render() с React-элементом и корневым DOM-узлом в качестве аргументов:
+```
+const element = <h1>Hello, world</h1>;
+ReactDOM.render(element, document.getElementById('root'));
+```
+React DOM сравнивает элемент и его дочернее дерево с предыдущей версией и вносит в DOM только минимально необходимые изменения.
+
+
+#### Импорт 
+`var React = require('react');`
+`var ReactDOM = require('react-dom');`
+// устаревшее, можно 
+`import React from 'react';`
+`import ReactDOM from 'react-dom';`
+
+`ReactDOM.render(<h1>Hello There</h1>, document.getElementById('root'));`
 // параметры render 
 // 1) что показывать, 
 // 2) где показывать,
 // 3) callback, то есть когда функция будет завершена
 
 //это тоже самое что:
-var h1 = document.createElement('h1');
-h1.innerHTML = 'HelloWorld';
-document.getElementById('root').appendChild(h1);
+`var h1 = document.createElement('h1');`
+`h1.innerHTML = 'HelloWorld';`
+`document.getElementById('root').appendChild(h1);`
 
 Связано с использованием JSX - расширение JS через встроенный Babel.
 
 2 ---
 //Для добавления нескольких элементов - обернуть в div 
-
+```
 ReactDOM.render(
 <div>
 <h1>Hello</h1>
 <p>There</p>
 </div>,
 document.getElementById("root"));
-
+```
 3 ---
+```
 // Чтобы вводить в html, внутри JSX, код JS, нужно обернуть его в {}
 // Пример
 import React from "react";
@@ -49,9 +85,9 @@ ReactDOM.render(
   </div>,
   document.getElementById("root")
 );
-
+```
 //Или через шаблонные литералы
-
+```
 ReactDOM.render(
   <div>
     <h1>Hello {name}!</h1>
@@ -59,22 +95,14 @@ ReactDOM.render(
   </div>,
   document.getElementById("root")
 );
-
-//<p>Your lucker number is {{`${luckNumber} ${smthElse}`}</p>
+```
+`<p>Your lucker number is {{`${luckNumber} ${smthElse}`}</p>`
 // равняется
-// <p>Your lucker number is {luckNumber + " " + smthElse}</p> 
+`<p>Your lucker number is {luckNumber + " " + smthElse}</p> `
 
-4---
 
-//Create a react app from scratch.
-//It should display 2 paragraph HTML elements.
-//The paragraphs should say:
-//Created by YOURNAME.
-//Copyright CURRENTYEAR.
-//E.g.
-//Created by Angela Yu.
-//Copyright 2019.
-
+>Пример
+```
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -90,13 +118,14 @@ ReactDOM.render
   </div>,
   document.getElementById("root")
 );
+```
 
 5---
 // Для того, чтобы дать задать тип ссылки в скрипте нужно 
-<script src="../src/index.js" type="text/JSX"></script>
+`<script src="../src/index.js" type="text/JSX"></script>`
 
-6---
-// Добавление стилей 
+#### Добавление стилей 
+```
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -122,25 +151,28 @@ ReactDOM.render(
   </div>,
   document.getElementById("root")
 );
-
+```
 //и в сss в то же время
-
+```
 .img 
 {
   width: 100px;
   height: 100px;
 }
+```
 
-7--- Добавление стилей онлайн
+Добавление стилей онлайн
+
 - с двойными фигурными скобками (!) так как параметр должен быть в виде JS объекта + сами фигурные скобки
 
+```
 import React from "react";
 import ReactDOM from "react-dom";
 
 ReactDOM.render(<h1 style={{color:"red"}}>Hello World!</h1>, document.getElementById("root"));
-
+```
 - через переменную. В этом случае все параметры css переводятся в объект JS и в JSX пишется переменная
-
+```
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -153,10 +185,11 @@ const customStyle =
 
 ReactDOM.render(<h1 style={customStyle}>Hello World!</h1>,
 document.getElementById("root"));
+```
 
 Для изменения параметров объекта можно изменять переменную как в JS
 
-customStyle.color = "blue";
+`customStyle.color = "blue";`
 
 =======
 
@@ -166,7 +199,7 @@ customStyle.color = "blue";
 //Apply the "heading" style in the styles.css
 //Dynamically change the color of the h1 using inline css styles.
 //Morning = red, Afternoon = green, Night = blue.
-
+```
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -189,8 +222,7 @@ ReactDOM.render(
 
  // Определение времени суток, выбирая между утром, днем и вечером
 function now()
-
-==== Почти рабочий код
+```
 
 //Show a single h1 that says "Good morning" if between midnight and 12PM.
 //or "Good Afternoon" if between 12PM and 6PM.
@@ -198,7 +230,7 @@ function now()
 //Apply the "heading" style in the styles.css
 //Dynamically change the color of the h1 using inline css styles.
 //Morning = red, Afternoon = green, Night = blue.
-
+```
 import React from "react";
 import ReactDOM from "react-dom";
 let Data = new Date();
@@ -237,9 +269,9 @@ ReactDOM.render(
       ;
   }
 }
-
+```
 ====== Более простой вариант
-
+```
 //Show a single h1 that says "Good morning" if between midnight and 12PM.
 //or "Good Afternoon" if between 12PM and 6PM.
 //or "Good evening" if between 6PM and midnight.
@@ -282,29 +314,50 @@ ReactDOM.render(
   <h1 className = "heading" style={customStyle}>{greeting}</h1>,
   document.getElementById("root")
 );
+```
+#### Компоненты
+Во многом компоненты ведут себя как обычные функции JavaScript. Они принимают произвольные входные данные (так называемые «пропсы») и возвращают React-элементы, описывающие, что мы хотим увидеть на экране.
+Пишется функция, название которой по конвенции в Паскаль-стиле и внутри они возвращает часть кода, который является компонентом
+
+Проще всего объявить React-компонент как функцию:
+
+```
+function Welcome(props) {
+  return <h1>Привет, {props.name}</h1>;
+}
+```
+
+Эта функция — компонент, потому что она получает данные в одном объекте («пропсы») в качестве параметра и возвращает React-элемент. Мы будем называть такие компоненты «функциональными», так как они буквально являются функциями.
+
+Ещё компоненты можно определять как классы ES6:
+```
+class Welcome extends React.Component {
+  render() {
+    return <h1>Привет, {this.props.name}</h1>;
+  }
+}
+```
+С точки зрения React, эти два компонента эквивалентны.
 
 
-8 --- Компоненты
-
-Пишется функция, название которой по конвенции в Паскаль-стиле
-и внутри они возвращает часть кода, который является компонентом
-
-к примеру, 
-
+Пример использования компонента.
+```
 function Heading()
 {
   return <h1>My Favourite Foods</h1>;
 }
-
+```
 для того, чтобы использовать компонент его пишут в коде как тэг
+```
 <Heading></Heading>
-
+```
 но лучше
-
+```
 <Heading />
+```
 
 Компоненты принято импортировать.
-Для этого:
+>Для этого:
 - создается новый файл с названием компонента (в папке src):
 Heading.jsx
 -там помещается компонент
