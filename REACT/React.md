@@ -317,7 +317,7 @@ ReactDOM.render(
 ```
 #### Компоненты
 Во многом компоненты ведут себя как обычные функции JavaScript. Они принимают произвольные входные данные (так называемые «пропсы») и возвращают React-элементы, описывающие, что мы хотим увидеть на экране.
-Пишется функция, название которой по конвенции в Паскаль-стиле и внутри они возвращает часть кода, который является компонентом
+Пишется функция, название которой в Паскаль-стиле и внутри они возвращает часть кода, который является компонентом. Если компонент начинается с маленькой буквы, React принимает его за DOM-тег. 
 
 Проще всего объявить React-компонент как функцию:
 
@@ -327,7 +327,7 @@ function Welcome(props) {
 }
 ```
 
-Эта функция — компонент, потому что она получает данные в одном объекте («пропсы») в качестве параметра и возвращает React-элемент. Мы будем называть такие компоненты «функциональными», так как они буквально являются функциями.
+Эта функция — компонент, потому что она получает данные в одном объекте («пропсы») в качестве параметра и возвращает React-элемент. Такие компоненты называются «функциональными», так как они буквально являются функциями.
 
 Ещё компоненты можно определять как классы ES6:
 ```
@@ -338,7 +338,6 @@ class Welcome extends React.Component {
 }
 ```
 С точки зрения React, эти два компонента эквивалентны.
-
 
 Пример использования компонента.
 ```
@@ -356,208 +355,39 @@ function Heading()
 <Heading />
 ```
 
-Компоненты принято импортировать.
->Для этого:
-- создается новый файл с названием компонента (в папке src):
-Heading.jsx
--там помещается компонент
-- помещается код импорта реакта в начало компонента
-import React from "react"; 
--в конце кода в файле компонента помещается код экспорта
-export default Heading;
-- в файле index.js помещается код импорта
-import Heading from "./Heading.jsx" (часто можно не указывать расширение)
+#### Пропсы
 
-Пример.
-Файл index
+React-элементы, представляющие собой DOM-теги это просто "DOM компоненты":
 
-import React from "react";
-import ReactDOM from "react-dom";
-import Heading from "./Heading.jsx" 
-import List from "./List.jsx" 
+>Компонент никогда не должен что-то записывать в свои пропсы — вне зависимости от того, функциональный он или классовый.
+[ ! ] React-компоненты обязаны вести себя как чистые функции по отношению к своим пропсам. [ ! ] 
 
-ReactDOM.render(
-  <div>
-   <Heading />
-   <List /> 
-  </div>,
-  document.getElementById("root")
+`const element = <div />;`
+
+Но элементы могут описывать собственные компоненты:
+
+`const element = <Welcome name="Алиса" />;`
+
+> Когда React встречает подобный элемент, он собирает все JSX-атрибуты и дочерние элементы в один объект и передаёт их этому компоненту.  Этот объект называется «пропсы» (props) (то есть содержащий атрибуты и дочерние элементы)
+
+>Базовый пример пропсов
+1 Передаём React-элемент <Welcome name="Алиса" /> в ReactDOM.render().
+2 React вызывает компонент Welcome с пропсами {name: 'Алиса'}.
+3 Компонент Welcome возвращает элемент <h1>Привет, Алиса</h1> в качестве результата.
+4 React DOM делает минимальные изменения в DOM, чтобы получилось <h1>Привет, Алиса</h1>.
+
+
+```
+function Welcome(props) {  return <h1>Привет, {props.name}</h1>;
+}
+
+const element = <Welcome name="Алиса" />;ReactDOM.render(
+  element,
+  document.getElementById('root')
 );
+```
 
-=== Файл компонента <Heading />
-import React from "react";
-
-function Heading()
-{
-  return <h1>My Favourite Foods</h1>;
-}
-
-export default Heading;
-
-=== Файл компонента <List /> 
-
-import React from "react";
-
-function List()
-{
-return <ul><li>Bacon</li><li>Jamon</li><li>Noodles</li></ul>;
-}
-
-export default List;
-
-=== ИЛИ
-import React from "react";
-
-function List(){
-return (
-  <ul>
-  <li>Bacon</li>
-  <li>Jamon</li>
-  <li>Noodles</li>
-  </ul>
-  );
-}
-
-export default List;
-
-9---- Имопрт ES6
-
-Файл (1) - куда импортируют
-
-import React from "react";
-import ReactDOM from "react-dom";
-import pi, { doublePi, triplePi } from "./math.js";
-
-ReactDOM.render(
-  <ul>
-    <li>{pi}</li>
-    <li>{doublePi()}</li>
-    <li>{triplePi()}</li>
-  </ul>,
-  document.getElementById("root")
-);
-
-Файл (2) - откуда импортируют
-const pi = 3.1415962;
-
-function doublePi() {
-  return pi * 2;
-}
-
-function triplePi() {
-  return pi * 3;
-}
-
-export default pi;
-export { doublePi, triplePi };
-
-======= 2-й пример импорта \ экспорта 
-(1) файл - куда импортируется
-
-import React from "react";
-import ReactDOM from "react-dom";
-import { add, multiply, subtract, divide} from "./calculator.js"
-
-//Import the add, multiply, subtract and divide functions
-//from the calculator.js file.
-//If successful, your website should look the same as the Final.png
-
-ReactDOM.render(
-  <ul>
-    <li>{add(1, 2)}</li>
-    <li>{multiply(2, 3)}</li>
-    <li>{subtract(7, 2)}</li>
-    <li>{divide(5, 2)}</li>
-  </ul>,
-  document.getElementById("root")
-);
-
-(2) файл - откуда экспортируется
-function add(n1, n2) {
-  return n1 + n2;
-}
-
-function multiply(n1, n2) {
-  return n1 * n2;
-}
-
-function subtract(n1, n2) {
-  return n1 - n2;
-}
-
-function divide(n1, n2) {
-  return n1 / n2;
-}
-
-export { add, multiply, subtract, divide};
-
-======= Приложение keeper
-= Файл App.jsx
-
-import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import Note from "./Note";
-
-function App() {
-  return (
-    <div>
-      <Header />
-      <Note />
-      <Footer />
-    </div>
-  );
-}
-
-export default App;
-
-= Файл Footer.jsx
-
-import React from "react";
-
-function Footer() {
-  const currentYear = new Date().getFullYear();
-  return (
-    <footer>
-      <p>Copyright ? {currentYear}</p>
-    </footer>
-  );
-}
-
-export default Footer;
-
-
-= Файл Header.jsx
-
-import React from "react";
-
-function Header() {
-  return (
-    <header>
-      <h1>Keeper</h1>
-    </header>
-  );
-}
-
-export default Header;
-
-= Файл Note.jsx
-
-import React from "react";
-
-function Note() {
-  return (
-    <div className="note">
-      <h1>This is the note title</h1>
-      <p>This is the note content</p>
-    </div>
-  );
-}
-
-export default Note;
-
-======= PROPS
-это атрибуты, которые можно создавать в реакте.
+Также PROPS это атрибуты, которые можно создавать в реакте.
 Синтаксис атрибутов похож на синтаксис input,
 <input id="root" placeholder="hello" ...>
 
@@ -596,8 +426,250 @@ ReactDOM.render(
 );
 
 ===
-чтобы экспортировать из файла в виде массива с внутренними объектами
 
+
+#### Композиция элементов
+Компоненты могут ссылаться на другие компоненты в возвращённом ими дереве. Это позволяет  использовать одну и ту же абстракцию — компоненты — на любом уровне приложения. Неважно, пишем ли мы кнопку, форму или целый экран: все они, как правило, представляют собой компоненты в React-приложениях.
+> Например, компонент App может отрендерить компонент Welcome несколько раз:
+
+```
+function Welcome(props) { 
+  return <h1>Привет, {props.name}</h1>;
+} -\\код компонента-функции. То есть сам компонент.
+
+function App() {
+  return (
+    <div>
+      <Welcome \\ объявление компонент-функция
+      name="Алиса" /> \\ пропс
+      <Welcome \\ объявление компонент-функция
+      name="Базилио" />  \\ пропс
+      <Welcome \\ объявление компонент-функция
+      name="Буратино" /> \\ пропс
+    </div>
+  );
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+```
+#### Извлечение компонентов 
+Компоненты можно разделять на части
+
+#### Импорт
+Компоненты принято импортировать.
+>Для этого:
+- создается новый файл с названием компонента (в папке src):
+Heading.jsx
+-там помещается компонент
+- помещается код импорта реакта в начало компонента
+import React from "react"; 
+-в конце кода в файле компонента помещается код экспорта
+export default Heading;
+- в файле index.js помещается код импорта
+import Heading from "./Heading.jsx" (часто можно не указывать расширение)
+
+Пример.
+```
+Файл index
+
+import React from "react";
+import ReactDOM from "react-dom";
+import Heading from "./Heading.jsx" 
+import List from "./List.jsx" 
+
+ReactDOM.render(
+  <div>
+   <Heading />
+   <List /> 
+  </div>,
+  document.getElementById("root")
+);
+```
+=== Файл компонента <Heading />
+```
+import React from "react";
+
+function Heading()
+{
+  return <h1>My Favourite Foods</h1>;
+}
+
+export default Heading;
+```
+=== Файл компонента <List /> 
+```
+import React from "react";
+
+function List()
+{
+return <ul><li>Bacon</li><li>Jamon</li><li>Noodles</li></ul>;
+}
+
+export default List;
+```
+=== ИЛИ
+```
+import React from "react";
+
+function List(){
+return (
+  <ul>
+  <li>Bacon</li>
+  <li>Jamon</li>
+  <li>Noodles</li>
+  </ul>
+  );
+}
+
+export default List;
+```
+9---- Имопрт ES6
+
+Файл (1) - куда импортируют
+```
+import React from "react";
+import ReactDOM from "react-dom";
+import pi, { doublePi, triplePi } from "./math.js";
+
+ReactDOM.render(
+  <ul>
+    <li>{pi}</li>
+    <li>{doublePi()}</li>
+    <li>{triplePi()}</li>
+  </ul>,
+  document.getElementById("root")
+);
+```
+Файл (2) - откуда импортируют
+```
+const pi = 3.1415962;
+
+function doublePi() {
+  return pi * 2;
+}
+
+function triplePi() {
+  return pi * 3;
+}
+
+export default pi;
+export { doublePi, triplePi };
+```
+======= 2-й пример импорта \ экспорта 
+(1) файл - куда импортируется
+```
+import React from "react";
+import ReactDOM from "react-dom";
+import { add, multiply, subtract, divide} from "./calculator.js"
+
+//Import the add, multiply, subtract and divide functions
+//from the calculator.js file.
+//If successful, your website should look the same as the Final.png
+
+ReactDOM.render(
+  <ul>
+    <li>{add(1, 2)}</li>
+    <li>{multiply(2, 3)}</li>
+    <li>{subtract(7, 2)}</li>
+    <li>{divide(5, 2)}</li>
+  </ul>,
+  document.getElementById("root")
+);
+```
+(2) файл - откуда экспортируется
+```
+function add(n1, n2) {
+  return n1 + n2;
+}
+
+function multiply(n1, n2) {
+  return n1 * n2;
+}
+
+function subtract(n1, n2) {
+  return n1 - n2;
+}
+
+function divide(n1, n2) {
+  return n1 / n2;
+}
+
+export { add, multiply, subtract, divide};
+```
+======= Приложение keeper
+```
+= Файл App.jsx
+
+import React from "react";
+import Header from "./Header";
+import Footer from "./Footer";
+import Note from "./Note";
+
+function App() {
+  return (
+    <div>
+      <Header />
+      <Note />
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
+```
+= Файл Footer.jsx
+```
+import React from "react";
+
+function Footer() {
+  const currentYear = new Date().getFullYear();
+  return (
+    <footer>
+      <p>Copyright ? {currentYear}</p>
+    </footer>
+  );
+}
+
+export default Footer;
+```
+
+= Файл Header.jsx
+```
+import React from "react";
+
+function Header() {
+  return (
+    <header>
+      <h1>Keeper</h1>
+    </header>
+  );
+}
+
+export default Header;
+```
+= Файл Note.jsx
+```
+import React from "react";
+
+function Note() {
+  return (
+    <div className="note">
+      <h1>This is the note title</h1>
+      <p>This is the note content</p>
+    </div>
+  );
+}
+
+export default Note;
+```
+
+
+> чтобы экспортировать из файла в виде массива с внутренними объектами
+
+```
 const contacts = [
   {
     name: "Beyonce",
@@ -621,11 +693,11 @@ const contacts = [
     email: "gmail@chucknorris.com"
   }
 ];
-
 export default contacts;
+```
 
 нужно использовать следующий код
-
+```
 import React from "react";
 import Card from "./Card.jsx";
 import contacts from "../contacts.js"
@@ -645,11 +717,12 @@ function App() {
 }
 
 export default App;
+```
 
-======= Метод map
+#### Метод map
 
 Вместо 
-
+```
 <Card
         name={contacts[0].name}
         img={contacts[0].imgURL}
@@ -668,9 +741,9 @@ export default App;
         tel={contacts[2].phone}
         email={contacts[2].email}
       />
-      
+```
 = Можно использовать функцию map (contacts это переменная в виде массива с объектами-элементами)
-
+```
   const contacts = [
   {
     id: 1,
@@ -697,17 +770,19 @@ export default App;
     email: "gmail@chucknorris.com"
   }
 ];
-
+```
   \\создается функция для создания карточки в App.jsx
   
+```
   function createCard()
   {
   return <Card 
   name={contact.name};
   />
   }
-  
+```
   \\ Создается map-функция
+```
  function createCard(contact){
   return <Card
   key={contact.id}
@@ -717,10 +792,10 @@ export default App;
   email={contact.email}
   />
 }
-
+```
 
 ############# Mapping Components Practice
-
+```
 Import React from "react";
 
 function App() {
@@ -805,13 +880,14 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 
 ReactDOM.render(<App />, document.getElementById("root"));
+```
 
 ===================================
-Динамическое создание карточки
+#### Динамическое создание карточки
 ===================================
 
 1) в app. js
-
+```
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -835,9 +911,9 @@ content={noteItem.content}
 }
 
 export default App;
-
+```
 2) в Note.js
-
+```
 import React from "react";
 
 function Note(props) {
@@ -850,9 +926,9 @@ function Note(props) {
 }
 
 export default Note;
-
+```
 3) в notes.js
-
+```
 const notes = [
   {
     key: 1,
@@ -881,12 +957,86 @@ const notes = [
 ];
 
 export default notes;
+```
 
-======= State
+#### Состояние (State) и жизненный цикл (lifecycle)
 
-Чтобы проверить статус изменений 
-и рендерить разные блоки разметки в зависимости от этого есть 2 способа
+> «Состояние» очень похоже на пропсы, отличие в том, что состояние контролируется и доступно только конкретному компоненту.
 
+Преобразование функционального компонента в классовый
+
+Преобразование функционального компонента Clock в классовый компонент за 5 шагов:
+```
+unction Clock(props) {
+  return (
+    <div>
+    <h1>Привет, мир!</h1>
+    <h2>Сейчас {props.date.toLocaleTimeString()}.
+    </h2> 
+    </div>  );
+}
+
+function tick() {
+  ReactDOM.render(
+    <Clock date={new Date()} />,    document.getElementById('root')
+  );
+}
+
+setInterval(tick, 1000);
+```
+
+
+1 Создаём ES6-класс с таким же именем, указываем React.Component в качестве родительского класса
+2 Добавим в класс пустой метод render()
+3 Перенесём тело функции в метод render()
+4 Заменим props на this.props в теле render()
+5 Удалим оставшееся пустое объявление функции
+```
+class Clock extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Привет, мир!</h1>
+        <h2>Сейчас {this.props.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+```
+Теперь Clock определён как класс, а не функция.
+Метод render будет вызываться каждый раз, когда происходит обновление. Так как мы рендерим <Clock /> в один и тот же DOM-контейнер, мы используем единственный экземпляр класса Clock — поэтому мы можем задействовать внутреннее состояние и методы жизненного цикла.
+
+Метод render будет вызываться каждый раз, когда происходит обновление. Так как мы рендерим <Clock /> в один и тот же DOM-контейнер, мы используем единственный экземпляр класса Clock — поэтому мы можем задействовать внутреннее состояние и методы жизненного цикла.
+
+> В приложениях со множеством компонентов очень важно освобождать используемые системные ресурсы, когда компоненты удаляются.
+Первоначальный рендеринг компонента в DOM называется «монтирование» (mounting). Нам нужно устанавливать таймер всякий раз, когда это происходит.
+Каждый раз когда DOM-узел, созданный компонентом, удаляется, происходит «размонтирование» (unmounting). Чтобы избежать утечки ресурсов, мы будем сбрасывать таймер при каждом «размонтировании».
+Объявим специальные методы, которые компонент будет вызывать при монтировании и размонтировании. Эти методы называются «методами жизненного цикла» (lifecycle methods).
+
+```
+componentDidMount() {  }
+componentWillUnmount() {  }
+```
+> Правила использования State
+1 Не изменяnm состояние напрямую 
+
+Неправильно
+`this.state.comment = 'Привет';`
+
+Вместо этого используйте setState():
+
+Правильно
+`this.setState({comment: 'Привет'});`
+
+> 2 Обновления состояния могут быть асинхронными
+React может сгруппировать несколько вызовов setState() в одно обновление для улучшения производительности.
+Поскольку this.props и this.state могут обновляться асинхронно,  можно не полагаться на их текущее значение для вычисления следующего состояния.
+3  Обновления состояния объединяются. Когда мы вызываем setState(), React объединит аргумент (новое состояние) c текущим состоянием. Их можно обновлять по отдельности с помощью отдельных вызовов setState().
+Например, состояние может состоять из нескольких независимых полей.
+
+
+Чтобы проверить статус изменений  и рендерить разные блоки разметки в зависимости от этого есть 2 способа
+```
 1) простой функцией
 
 import React from "react";
@@ -914,9 +1064,9 @@ function App() {
 }
 
 export default App;
-
+```
 2) 
-
+```
 import React from "react";
 import Login from "./Login";
 
@@ -960,8 +1110,10 @@ function Login() {
 }
 
 export default Login;
+```
 
-======= useState
+useState
+```
 ===Импорт - вариант 1
 
 import React, { useState } from "react";
@@ -971,14 +1123,90 @@ function App() {
   const state = useState(); 
 
 }
-
+```
 ===Импорт - вариант 2
-
+```
 import React from "react";
 
 function App() {
   const state = React.useState(); 
 }
+```
+
+#### Однонаправленный поток данных 
+В иерархии компонентов ни родительский, ни дочерние компоненты не знают, задано ли состояние другого компонента. Также не важно, как был создан определённый компонент — с помощью функции или с помощью класса.
+Состояние часто называют «локальным», «внутренним» или инкапсулированным. Оно доступно только для самого компонента и скрыто от других.
+Компонент может передать своё состояние вниз по дереву в виде пропсов дочерних компонентов:
+
+`<FormattedDate date={this.state.date} />`
+Состояние всегда принадлежит определённому компоненту, а любые производные этого состояния могут влиять только на компоненты, находящиеся «ниже» в дереве компонентов.
+
+#### Обработка событий
+
+Обработка событий в React-элементах очень похожа на обработку событий в DOM-элементах. Но есть несколько синтаксических отличий:
+
+- События в React именуются в стиле camelCase вместо нижнего регистра.
+- С JSX вы передаёте функцию как обработчик события вместо строки.
+- Ещё одно отличие — в React нельзя предотвратить обработчик события по умолчанию, вернув false. Нужно явно вызвать preventDefault
+- При использовании React обычно не нужно вызывать addEventListener, чтобы добавить обработчики в DOM-элемент после его создания. Вместо этого добавьте обработчик сразу после того, как элемент отрендерился.
+
+Например, в HTML:
+```
+<button onclick="activateLasers()">
+  Активировать лазеры
+</button>
+```
+В React немного иначе:
+```
+<button onClick={activateLasers}>  Активировать лазеры
+</button>
+```
+
+При обращении к this в JSX-колбэках необходимо учитывать, что методы класса в JavaScript по умолчанию не привязаны к контексту. 
+Обычно, если ссылаться на метод без () после него, например, onClick={this.handleClick}, этот метод нужно привязать.
+
+Если не использовать bind, существует два других способа. 1) экспериментальный синтаксис общедоступных полей классов, 2) стрелочные функции в колбэке. (см. примеры в документации)
+
+#### Передача аргументов в обработчики событий
+
+Внутри цикла часто нужно передать дополнительный аргумент в обработчик события. Например, если id — это идентификатор строки, можно использовать следующие варианты:
+```
+<button onClick={(e) => this.deleteRow(id, e)}>Удалить строку</button>
+<button onClick={this.deleteRow.bind(this, id)}>Удалить строку</button>
+```
+Две строки выше — эквивалентны, и используют стрелочные функции и Function.prototype.bind соответственно.
+
+В обоих случаях аргумент e, представляющий событие React, будет передан как второй аргумент после идентификатора. Используя стрелочную функцию, необходимо передавать аргумент явно, но с bind любые последующие аргументы передаются автоматически.
+
+#### Условный рендеринг
+
+React позволяет разделить логику на независимые компоненты. Эти компоненты можно показывать или прятать в зависимости от текущего состояния.
+
+Условный рендеринг в React работает так же, как условные выражения работают в JavaScript. 
+В таких ситуациях используется условный оператор JavaScript или выражения подобные if.
+
+Пример:
+```
+function UserGreeting(props) {
+  return <h1>С возвращением!</h1>;
+}
+
+function GuestGreeting(props) {
+  return <h1>Войдите, пожалуйста.</h1>;
+}
+```
+
+Можно создать компонент Greeting, который отражает один из этих компонентов в зависимости от того, выполнен ли вход на сайт:
+````
+function Greeting(props) {
+  const isLoggedIn = props.isLoggedIn;
+  if (isLoggedIn) {    return <UserGreeting />;  }  return <GuestGreeting />;}
+ReactDOM.render(
+  // Попробуйте заменить на isLoggedIn={true} и посмотрите на эффект.
+  <Greeting isLoggedIn={false} />,  document.getElementById('root'));
+```
+
+В этом примере рендерится различное приветствие в зависимости от значения пропа isLoggedIn
 
 ===================================
 Хуки
