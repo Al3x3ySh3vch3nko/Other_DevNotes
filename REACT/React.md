@@ -1183,7 +1183,7 @@ function App() {
 React позволяет разделить логику на независимые компоненты. Эти компоненты можно показывать или прятать в зависимости от текущего состояния.
 
 Условный рендеринг в React работает так же, как условные выражения работают в JavaScript. 
-В таких ситуациях используется условный оператор JavaScript или выражения подобные if.
+В таких ситуациях используется условный оператор JavaScript или выражения подобные if (Также могут использовать конструкции с && или с тернарным оператором)
 
 Пример:
 ```
@@ -1207,6 +1207,121 @@ ReactDOM.render(
 ```
 
 В этом примере рендерится различное приветствие в зависимости от значения пропа isLoggedIn
+
+#### Переменные-элементы 
+Элементы React можно сохранять в переменных. Это может быть удобно, когда какое-то условие определяет, надо ли рендерить одну часть компонента или нет, а другая часть компонента остаётся неизменной.
+
+Пример 2х компонентов - появляются в зависимости от состояния
+```
+function LoginButton(props) {
+  return (
+    <button onClick={props.onClick}>
+      Войти
+    </button>
+  );
+}
+
+function LogoutButton(props) {
+  return (
+    <button onClick={props.onClick}>
+      Выйти
+    </button>
+  );
+}
+```
+Функция, которая определяет какой из компонентов рендерить в зависимости от состояния
+```
+class LoginControl extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleLoginClick = this.handleLoginClick.bind(this);
+    this.handleLogoutClick = this.handleLogoutClick.bind(this);
+    this.state = {isLoggedIn: false};
+  }
+
+  handleLoginClick() {
+    this.setState({isLoggedIn: true});
+  }
+
+  handleLogoutClick() {
+    this.setState({isLoggedIn: false});
+  }
+
+  render() {
+    const isLoggedIn = this.state.isLoggedIn;
+    let button;
+    if (isLoggedIn)
+    {  
+        button = <LogoutButton onClick={this.handleLogoutClick} />; 
+    }
+    else
+    {     
+        button = <LoginButton onClick={this.handleLoginClick} />; 
+    }
+    return (
+      <div>
+        <Greeting isLoggedIn={isLoggedIn} />
+        {button}  
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <LoginControl />,
+  document.getElementById('root')
+);
+```
+
+> Встроенные условия if с логическим оператором &&
+Можно внедрить любое выражение в JSX, заключив его в фигурные скобки.
+Это правило распространяется и на логический оператор && языка JavaScript, которым можно удобно вставить элемент в зависимости от условия:
+
+```
+<div>
+      <h1>Здравствуйте!</h1>
+      {
+            unreadMessages.length > 0 && <h2> У вас {unreadMessages.length} непрочитанных сообщений. </h2>
+      } 
+</div>
+```
+
+> Встроенные условия if-else с тернарным оператором
+
+Есть ещё один способ писать условия прямо в JSX. 
+
+```
+render()
+{
+  const isLoggedIn = this.state.isLoggedIn;
+  return (
+    <div>
+      Пользователь <b>{isLoggedIn ? 'сейчас' : 'не'}</b> на сайте.  </div>
+  );
+}
+```
+
+Другой пример
+
+```
+render() {
+  const isLoggedIn = this.state.isLoggedIn;
+  return (
+    <div>
+      {isLoggedIn
+            ? <LogoutButton onClick={this.handleLogoutClick} />
+            : <LoginButton onClick={this.handleLoginClick} />
+      }
+    </div>  );
+}
+```
+
+#### Предотвращение рендеринга компонента
+
+В редких случаях может потребоваться позволить компоненту спрятать себя, хотя он уже и отрендерен другим компонентом. Чтобы этого добиться, верните null вместо того, что обычно возвращается на рендеринг.
+Например, будет ли содержимое <WarningBanner /> отрендерено, зависит от значения пропа под именем warn. Если значение false, компонент ничего не рендерит:
+
+
 
 ===================================
 Хуки
