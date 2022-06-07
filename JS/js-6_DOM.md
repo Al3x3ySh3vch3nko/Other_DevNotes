@@ -4,6 +4,12 @@
 DOM состоит из нод (объекты), которые имеют разный тип. Каждый тип может иметь свои методы.
 
 Типы нод:
+"1 уровень"
+- EventListener
+"2 уровень"
+- Node
+- Window
+"3 уровень" - дочерние для типа Node:
 - элементы (html элементы)
 - текст
 - комментарий
@@ -14,10 +20,11 @@ DOM работает по принципу наследование. То ест
 ***
 __Выбор элементов. Просмотр DOM элементов через консоль__
 ***
-`console.log(document.documentElement)` // все
-`console.log(document.head)` // элемент head
-`console.log(document.body)` // элемент body
-
+```
+console.log(document.documentElement) // все
+console.log(document.head) // элемент head
+console.log(document.body) // элемент body
+```
 Некоторые методы такие как getElementByTagName \ ByClassName возвращают не псевдомассив \ node list, а life collection. То есть, коллекцию элементов, которая автоматически обновляется
 
 * Как открыть структуру всего документа.
