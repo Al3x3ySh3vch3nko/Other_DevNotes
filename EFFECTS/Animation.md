@@ -14,3 +14,7 @@ https://tobiasahlin.com/
 ```
 animation: name 1s linear infinite alternate;
 ```
+Библиотека Gsap
+```
+https://greensock.com/gsap/
+```
