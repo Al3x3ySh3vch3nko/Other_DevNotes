@@ -1,6 +1,14 @@
+Функции плавности анимации
+```
 https://easings.net/ru
 
 https://cubic-bezier.com/
+```
+
+Библиотека Gsap
+```
+https://greensock.com/gsap/
+```
 
 Анимации бэкрграунда
 ```
@@ -14,7 +22,4 @@ https://tobiasahlin.com/
 ```
 animation: name 1s linear infinite alternate;
 ```
-Библиотека Gsap
-```
-https://greensock.com/gsap/
-```
+
