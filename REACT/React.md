@@ -461,6 +461,39 @@ function Heading()
 <Heading />
 ```
 
+#### Жизненный цикл  (по порядку вызова) - это методы, которые вызываются при отображении App или дочрних компонентов React. Некоторые из них могут быть исключены из спецификации в дальнейшем.
+
+Для APP (в порядке загрузки)
+1) (APP) componentWillMount
+2) (APP) Render
+3) (APP) componentDidMount
+
+Для дочернего компонента (при его изменении) существуют следующие методы.
+
+-componentWillRecieveProps(neхtProp){} 
+-shouldComponentUpdate(nextProps, nextState){return something}
+-componentWillUdate(nextProps, nestState){}
+-componentDidUpdate(){}
+
+Указанные методы вызываются в следующем порядке с учетом загрузки APP (см. выше)
+
+1) (APP) componentWillMount
+2) (APP) Render
+3) (APP) componentDidMount
+4) (APP) Render (при появлении нового компонента в APP)
+5) (Component) Render
+6) componentWillRecieveProps(neхtProp){} (синхронизирует локальный state с входящими данными. Метод используется редко)
+7) shouldComponentUpdate(nextProps, nextState){return something} (метод всегда должен что-то возвращать. Используется для оптимизации приложения путем указания true или false - то есть, нужно ли перерисовывать приложение (компонент) или нет. Пример - если в инпуте, при заполнении которого будет что-то мнеяться в компоненте) будет добавлен только пробел то дальнейше изменнеие компонента не будет происходить:
+```
+ shouldComponentUpdate(nextProps, nextState)
+ {
+      return nextProps.name.trim() !== this.props.name.trim()
+ } 
+```
+8) componentWillUdate(nextProps, nestState){} (метод получает подтвержденные данные, которые потребуют изменения. синхронизируется локальный state)
+9) (Component) Render
+10) componentDidUpdate(){} (потверждение, что компонент был изменен)
+
 #### Пропсы
 
 React-элементы, представляющие собой DOM-теги это просто "DOM компоненты":
