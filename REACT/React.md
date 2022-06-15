@@ -474,6 +474,7 @@ function Heading()
 -shouldComponentUpdate(nextProps, nextState){return something}
 -componentWillUdate(nextProps, nestState){}
 -componentDidUpdate(){}
+-componentWillUnmount(){}
 
 Указанные методы вызываются в следующем порядке с учетом загрузки APP (см. выше)
 
@@ -483,6 +484,13 @@ function Heading()
 4) (APP) Render (при появлении нового компонента в APP)
 5) (Component) Render
 6) componentWillRecieveProps(neхtProp){} (синхронизирует локальный state с входящими данными. Метод используется редко)
+6-1) более новый метод вместо componentWillRecieveProps - (запрещает менять state через this.state или this.setState() для устранения рисков)
+```
+static getDerivedStateFromProps(nextProps, prevState)
+{
+  return{} или return prevState \\ возвращает новый state, который будет обновлять текущий
+}
+```
 7) shouldComponentUpdate(nextProps, nextState){return something} (метод всегда должен что-то возвращать. Используется для оптимизации приложения путем указания true или false - то есть, нужно ли перерисовывать приложение (компонент) или нет. Пример - если в инпуте, при заполнении которого будет что-то мнеяться в компоненте) будет добавлен только пробел то дальнейше изменнеие компонента не будет происходить:
 ```
  shouldComponentUpdate(nextProps, nextState)
@@ -491,8 +499,18 @@ function Heading()
  } 
 ```
 8) componentWillUdate(nextProps, nestState){} (метод получает подтвержденные данные, которые потребуют изменения. синхронизируется локальный state)
+8-1) более новый метод вместо componentWillUdate - (запрещает менять state через this.state или this.setState() для устранения рисков)
+```
+static getDerivedStateFromProps(nextProps, prevState)
+{
+  return{} или return prevState \\ возвращает новый state, который будет обновлять текущий
+}
+```
 9) (Component) Render
-10) componentDidUpdate(){} (потверждение, что компонент был изменен)
+10) getSnapshotBeforeUpdate(){} (вызывается при изменении компонента, получает неизмененное dom дерево, которое было до изменений)
+11) componentDidUpdate(){} (потверждение, что компонент был изменен)
+12) getSnapshotBeforeUpdate(){}
+13) componentWillUnmount(){} (вызывается при удалении элемента, на практике используется для удаления счетчиков, таймеров, подписок, очистка памяти и пр.)
 
 #### Пропсы
 
