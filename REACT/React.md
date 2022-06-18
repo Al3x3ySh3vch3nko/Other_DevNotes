@@ -512,6 +512,37 @@ static getDerivedStateFromProps(nextProps, prevState)
 12) getSnapshotBeforeUpdate(){}
 13) componentWillUnmount(){} (вызывается при удалении элемента, на практике используется для удаления счетчиков, таймеров, подписок, очистка памяти и пр.)
 
+---
+
+ErrorBoundary - метод, который помогает отслеживать ошибки.
+Создается как новый компонент, в который оборачиваются прочие компоненты. Если в компоненте был параметр key то его надо переместить в ErrorBoundary
+
+```
+import React from 'react'
+
+export default class ErrorBoundary extends React.Component
+{
+  state = 
+  {
+    hasError: false
+  }
+  
+  componentDidCatch (error, info)
+  {
+    this.state({hasError: {true})
+  }
+  
+  render()
+  {
+    if (this.state.hasError)
+    {
+      return <h1>! ERROR !<h1/>
+    }
+    
+    return this props.children
+  }
+}
+
 #### Пропсы
 
 React-элементы, представляющие собой DOM-теги это просто "DOM компоненты":
