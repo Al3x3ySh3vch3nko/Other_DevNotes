@@ -461,88 +461,6 @@ function Heading()
 <Heading />
 ```
 
-#### Жизненный цикл  (по порядку вызова) - это методы, которые вызываются при отображении App или дочрних компонентов React. Некоторые из них могут быть исключены из спецификации в дальнейшем.
-
-Для APP (в порядке загрузки)
-1) (APP) componentWillMount
-2) (APP) Render
-3) (APP) componentDidMount
-
-Для дочернего компонента (при его изменении) существуют следующие методы.
-
--componentWillRecieveProps(neхtProp){} 
--shouldComponentUpdate(nextProps, nextState){return something}
--componentWillUdate(nextProps, nestState){}
--componentDidUpdate(){}
--componentWillUnmount(){}
-
-Указанные методы вызываются в следующем порядке с учетом загрузки APP (см. выше)
-
-1) (APP) componentWillMount
-2) (APP) Render
-3) (APP) componentDidMount
-4) (APP) Render (при появлении нового компонента в APP)
-5) (Component) Render
-6) componentWillRecieveProps(neхtProp){} (синхронизирует локальный state с входящими данными. Метод используется редко)
-6-1) более новый метод вместо componentWillRecieveProps - (запрещает менять state через this.state или this.setState() для устранения рисков)
-```
-static getDerivedStateFromProps(nextProps, prevState)
-{
-  return{} или return prevState \\ возвращает новый state, который будет обновлять текущий
-}
-```
-7) shouldComponentUpdate(nextProps, nextState){return something} (метод всегда должен что-то возвращать. Используется для оптимизации приложения путем указания true или false - то есть, нужно ли перерисовывать приложение (компонент) или нет. Пример - если в инпуте, при заполнении которого будет что-то мнеяться в компоненте) будет добавлен только пробел то дальнейше изменнеие компонента не будет происходить:
-```
- shouldComponentUpdate(nextProps, nextState)
- {
-      return nextProps.name.trim() !== this.props.name.trim()
- } 
-```
-8) componentWillUdate(nextProps, nestState){} (метод получает подтвержденные данные, которые потребуют изменения. синхронизируется локальный state)
-8-1) более новый метод вместо componentWillUdate - (запрещает менять state через this.state или this.setState() для устранения рисков)
-```
-static getDerivedStateFromProps(nextProps, prevState)
-{
-  return{} или return prevState \\ возвращает новый state, который будет обновлять текущий
-}
-```
-9) (Component) Render
-10) getSnapshotBeforeUpdate(){} (вызывается при изменении компонента, получает неизмененное dom дерево, которое было до изменений)
-11) componentDidUpdate(){} (потверждение, что компонент был изменен)
-12) getSnapshotBeforeUpdate(){}
-13) componentWillUnmount(){} (вызывается при удалении элемента, на практике используется для удаления счетчиков, таймеров, подписок, очистка памяти и пр.)
-
----
-
-ErrorBoundary - метод, который помогает отслеживать ошибки.
-Создается как новый компонент, в который оборачиваются прочие компоненты. Если в компоненте был параметр key то его надо переместить в ErrorBoundary
-
-```
-import React from 'react'
-
-export default class ErrorBoundary extends React.Component
-{
-  state = 
-  {
-    hasError: false
-  }
-  
-  componentDidCatch (error, info)
-  {
-    this.state({hasError: {true})
-  }
-  
-  render()
-  {
-    if (this.state.hasError)
-    {
-      return <h1>! ERROR !<h1/>
-    }
-    
-    return this props.children
-  }
-}
-
 #### Пропсы
 
 React-элементы, представляющие собой DOM-теги это просто "DOM компоненты":
@@ -1213,10 +1131,99 @@ class Clock extends React.Component {
 Каждый раз когда DOM-узел, созданный компонентом, удаляется, происходит «размонтирование» (unmounting). Чтобы избежать утечки ресурсов, мы будем сбрасывать таймер при каждом «размонтировании».
 Объявим специальные методы, которые компонент будет вызывать при монтировании и размонтировании. Эти методы называются «методами жизненного цикла» (lifecycle methods).
 
+
+#### Жизненный цикл  (по порядку вызова) - это методы, которые вызываются при отображении App или дочрних компонентов React. Некоторые из них могут быть исключены из спецификации в дальнейшем.
+
+
+Основные
+
 ```
+
 componentDidMount() {  }
 componentWillUnmount() {  }
 ```
+
+Для APP (в порядке загрузки)
+1) (APP) componentWillMount
+2) (APP) Render
+3) (APP) componentDidMount
+
+Для дочернего компонента (при его изменении) существуют следующие методы.
+
+-componentWillRecieveProps(neхtProp){} 
+-shouldComponentUpdate(nextProps, nextState){return something}
+-componentWillUdate(nextProps, nestState){}
+-componentDidUpdate(){}
+-componentWillUnmount(){}
+
+Указанные методы вызываются в следующем порядке с учетом загрузки APP (см. выше)
+
+1) (APP) componentWillMount
+2) (APP) Render
+3) (APP) componentDidMount
+4) (APP) Render (при появлении нового компонента в APP)
+5) (Component) Render
+6) (Component) componentWillRecieveProps(neхtProp){} (синхронизирует локальный state с входящими данными. Метод используется редко)
+6-1) (Component) более новый метод вместо componentWillRecieveProps - (запрещает менять state через this.state или this.setState() для устранения рисков)
+```
+static getDerivedStateFromProps(nextProps, prevState)
+{
+  return{} или return prevState \\ возвращает новый state, который будет обновлять текущий
+}
+```
+7) (Component) shouldComponentUpdate(nextProps, nextState){return something} (метод всегда должен что-то возвращать. Используется для оптимизации приложения путем указания true или false - то есть, нужно ли перерисовывать приложение (компонент) или нет. Пример - если в инпуте, при заполнении которого будет что-то мнеяться в компоненте) будет добавлен только пробел то дальнейше изменнеие компонента не будет происходить:
+```
+ shouldComponentUpdate(nextProps, nextState)
+ {
+      return nextProps.name.trim() !== this.props.name.trim()
+ } 
+```
+8) (Component) componentWillUdate(nextProps, nestState){} (метод получает подтвержденные данные, которые потребуют изменения. синхронизируется локальный state)
+8-1) (Component) более новый метод вместо componentWillUdate - (запрещает менять state через this.state или this.setState() для устранения рисков)
+```
+static getDerivedStateFromProps(nextProps, prevState)
+{
+  return{} или return prevState \\ возвращает новый state, который будет обновлять текущий
+}
+```
+9) (Component) Render
+10) (Component) getSnapshotBeforeUpdate(){} (вызывается при изменении компонента, получает неизмененное dom дерево, которое было до изменений)
+11) (Component) componentDidUpdate(){} (потверждение, что компонент был изменен)
+12) (Component) getSnapshotBeforeUpdate(){}
+13) (Component) componentWillUnmount(){} (вызывается при удалении элемента, на практике используется для удаления счетчиков, таймеров, подписок, очистка памяти и пр.)
+
+---
+
+ErrorBoundary - метод, который помогает отслеживать ошибки.
+Создается как новый компонент, в который оборачиваются прочие компоненты. Если в компоненте был параметр key то его надо переместить в ErrorBoundary
+
+```
+import React from 'react'
+
+export default class ErrorBoundary extends React.Component
+{
+  state = 
+  {
+    hasError: false
+  }
+  
+  componentDidCatch (error, info)
+  {
+    this.state({hasError: {true})
+  }
+  
+  render()
+  {
+    if (this.state.hasError)
+    {
+      return <h1>! ERROR !<h1/>
+    }
+    
+    return this props.children
+  }
+}
+```
+
 > Правила использования State
 1 Не изменяnm состояние напрямую 
 
