@@ -3086,8 +3086,10 @@ function Note(props) {
 
 export default Note;
 ```
+
 #### Browser Routing
 Простое переключение между страницами (рендер страниц в зависимости от выбранной - пример кода из NFT магазина)
+
 
 ```
 import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
