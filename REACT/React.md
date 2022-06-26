@@ -1,9 +1,11 @@
 ========================================
+
 Ссылка: [Стиль написания кода от AirBnb](https://github.com/leonidlebedev/javascript-airbnb/tree/master/react)
 
 Ссылка: [React form hook](https://react-hook-form.com)
 
 Ссылка: [react-router](https://reactrouter.com/)
+
 ========================================
 > React разделяет ответственность с помощью слабо связанных единиц, называемых «компоненты», которые содержат и разметку, и логику - вместе. То есть, html/css/js в одном блоке.
 
