@@ -1709,11 +1709,12 @@ function App() {
 
 export default App;
 ```
-=======+==============Практика useState ====================
-|                                                          |
+===================== Практика useState ====================
+
 |            Код обновляет время каждую секунду            |
-|                                                          |
+
 ============================================================
+
 ```
 import React, { useState } from "react";
 
@@ -3099,9 +3100,73 @@ export default Note;
 ```
 
 #### Browser Routing
-Простое переключение между страницами (рендер страниц в зависимости от выбранной - пример кода из NFT магазина)
 
+Пакет - 'react-router-dom' | $ npm i react-router-dom
+Состоит из двух пакетов: 1) react-router и 2) react-router-dom
+Нужно оборачивать в отдельный компонент высшего порядка (анпример, index.js)
 
+Импорт:
+import { BrowserRouter } from "react-router-dom"; \\ компонент, который оборачивает App  
+import { Route }         from "react-router-dom"; \\ компонент, который регистрирует ссылки
+
+```
+<Route 
+path      = '/'                          \\ путь в корень, то есть главная страница. или указать иной путь
+exact                                    \\ параметр говорит, что совпадение пути должно быть точное 
+render    = {() => <h1> Home page </h1>} \\ может рендерить в колбекфункции указанный код в случае, если путь совпадает с корнем
+component = {ComponentName}              \\ вместо метода render указывается компонент (страницу), который должен быть отрендерин
+/>
+```
+import { NavLink } from "react-router-dom"; \\ компонент, который представляет собой ссылки, необходимые для того, чтобы контент не перезагружался при переходе на них
+```
+Вместо:
+<li>
+  <a href = '/'>Home</a>
+</li>
+
+Такой код:
+<li>
+  <NavLink to = '/' exact>Home</a>
+</li>
+\\ добавляет css класс active, что можно использовать для стилизации (a.active). Но также нужно указывать параметр exact, иначе стилизация будет применена ко всем страницам с частичным соответствием пути
+
+Для того, чтобы изменить класс css по умолчанию нужно переназначить это отдельно
+<li>
+  <NavLink to = '/' exact activeClassName={название класса}>Home</a>
+</li>
+
+Монжно передавать значение пути как объект
+
+<li>
+  <NavLink
+  to = {{
+    pathname: '/'
+    search:   '?a=1$b=1'  \\ добавляет в URL значение для конфигурации после корня и страниц
+    hash:     'wmf-hash'  \\ добавляет в URL значение для конфигурации после корня и страниц и search
+  }}
+  exact>Home</a>
+</li>
+
+```
+import { withRouter } from "react-router-dom"; \\ позволяет настроить роутинг внутри компонентов. добавляет параментр history компоненту
+```
+expoty default withRouter(имя Компонента)
+```
+import { Switch } from "react-router-dom"; \\ в этот компонент оборачиваются иные компоненты с роутингом, он позволяет отображать только один из них при выборе
+```
+<Switch>
+     <Route exact path="/">
+          <img className="bottom-space" src={homeImage} />
+     </Route>
+     <Route path="/discover">{listingGallery}</Route>
+     <Route path="/minter">
+          <Minter />
+     </Route>
+     <Route path="/collection">{userOwnedGallery}</Route>
+</Switch>
+```
+
+ПРИМЕР кода из NFT магазина: простое переключение между страницами 
 ```
 import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
 function Header() {
