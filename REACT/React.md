@@ -3165,6 +3165,39 @@ import { Switch } from "react-router-dom"; \\ в этот компонент о�
      <Route path="/collection">{userOwnedGallery}</Route>
 </Switch>
 ```
+Ошибка 404
+\\ указывается в конце как компонент. Если ни один из адресов не верен он как последний объект рендерится.
+```
+<Switch>
+     <Route exact path="/">
+          <img className="bottom-space" src={homeImage} />
+     </Route>
+     <Route path="/discover">{listingGallery}</Route>
+     <Route render = {()=> <h1> 404 not found </h1> />
+</Switch>
+```
+Редирект
+\\ Не работает внутри компонента Switch c параметром from
+```
+import { Redirect } from "react-router-dom"
+
+<Redirect from={"/discover"} to {/about} />
+
+Или
+
+<Switch>
+     <Route exact path="/">
+          <img className="bottom-space" src={homeImage} />
+     </Route>
+     <Route path="/discover">{listingGallery}</Route>
+   <Redirect to {/} />
+</Switch>
+```
+Рендерниг по условию (защита мокпонентов) 
+
+```
+{isLoggedIn ? <Route exact path="/"><img className="bottom-space" src={homeImage}/></Route> : null}
+```
 
 ПРИМЕР кода из NFT магазина: простое переключение между страницами 
 ```
