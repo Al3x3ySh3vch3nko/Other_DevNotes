@@ -3249,8 +3249,7 @@ export default Header;
 ```
 
 ### REDUX JS
-npm install redux
-npm install @reduxjs/toolkit
+npm install react-redux
 
 Библиотека, которая позволяет удобнее взаимодействовать с данными. Обычно используется с React
 Состоит из:
@@ -3312,4 +3311,14 @@ const addCounter =
 store.dispatch(type: 'ADD') // метод, который вызывает тот или иной тип action
 store.dispatch(type: 'ADD_NUMBER', value: 10) // пример метода, когда он содержит в себе значение, которое передается в action
 
+```
+
+Redux и React
+
+```
+import {Provider} from 'react-redux'
+
+<Provider store={store}> // приложение оборачивается в этот компонент
+  <App/>
+</Provider>
 ```
