@@ -3249,6 +3249,7 @@ export default Header;
 ```
 
 ### REDUX JS
+npm install redux
 npm install react-redux
 
 Библиотека, которая позволяет удобнее взаимодействовать с данными. Обычно используется с React
@@ -3272,14 +3273,14 @@ const reducer = (state = initialState, action) =>
       return                        // возвращается объект в виде прошлого state (в примере равно объекту initialState со свойством counter = 0) c мутацией этого   
                                        объекта 
       {
-        counter: state.counter + 1
+          counter: state.counter + 1
       }
     }
     if (action.type === 'ADD_NUMBER') 
     {
       return
       {
-        counter: state.counter + action.value
+          counter: state.counter + action.value
       }
     }
 return state
@@ -3305,7 +3306,7 @@ store.getState() - метод - возвращает состояние
 ```
 const addCounter = 
   {
-    type: 'ADD'
+      type: 'ADD'
   }
   
 store.dispatch(type: 'ADD') // метод, который вызывает тот или иной тип action
@@ -3316,9 +3317,63 @@ store.dispatch(type: 'ADD_NUMBER', value: 10) // пример метода, ко
 Redux и React
 
 ```
+
+INDEX JS
+import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 
 <Provider store={store}> // приложение оборачивается в этот компонент
-  <App/>
+    <App/>
 </Provider>
+
+REDUX JS
+const initialState = 
+{
+    counter: 0
+}
+export default function rootReducer(state = initialState, action)
+{
+    switch (action.type)
+    {
+        case 'INCREMENT': return {counter: state.counter + 1 ИЛИ ...state, count: state.count - 1} // добавляется новый объект, не мутируется старый
+        case 'DECREMENT': return {counter: state.counter - 1 ИЛИ ...state, count: state.count - 1}
+        case 'RESET'    : return {counter: state.counter = 0 ИЛИ ...state, count: 0}
+    }
+    
+    return state
+}
+
+APP JS
+import {connect} from 'react-redux' // функция, связываюшая store с компонентами. Имеет 2 опциональных метода
+1) mapStateToProps // функция создается как показано ниже. Трансформирует state, позволяя использовать его значения как props для App при вызове connect  
+
+function mapStateToProps(state)
+{
+  return
+  {
+      counter: state.counter // теперь можно использовать не как state, а как props
+  }
+}
+
+2) mapDispatchToProps // функция создается как показано ниже. Позволяет использовать action через методы dispatch
+
+function mapDispatchToProps(dispatch)
+{
+  return
+  {
+      increment: () => dispatch({ type: 'INCREMENT' }),
+      decrement: () => dispatch({ type: 'DECREMENT' }),
+      reset:     () => dispatch({ type: 'RESET' }),
+  }
+}
+
+<div className = 'Actions'>
+      <button onClick={() => dispatch({ type: 'DECREMENT' })}>-</button>
+      <button onClick={() => dispatch({ type: 'INCREMENT' })}>+</button>
+      <button onClick={() => dispatch({ type: 'RESET' })}>reset</button>
+</div>
+
+export default connect(mapStateToProps, mapDispatchToProps) (App) // вызывается функция connect, после этого возвращается и вызывается новая функция с App (такая логика работы)
+
+
 ```
