@@ -3403,6 +3403,7 @@ function loggerMiddleware(store)
     return function(action)
     {
       const result = next(action)
+      console.log(store.getState())
       return result
     }
   }
@@ -3412,8 +3413,47 @@ function loggerMiddleware(store)
 const loggerMiddleware = store => next => action =>
 {
   const result = next(action)
+  console.log(store.getState())
   return result
 }
 
 const store = createStore(rootReducer, applyMiddleware(loggerMiddleware))
+```
+
+Action Creators - отдельные файлы где указываются перечень типов action и функция, принимающая в себя эти типы
+
+```
+export const ADD = 'ADD'
+export const SUB = 'SUB'
+
+import {ADD, SUB} from '...'
+
+export function add(number)
+{
+  return 
+  {
+    type: ADD,
+    payload: number
+  }
+}
+
+export function sub(number)
+{
+  return 
+  {
+    type: SUB,
+    payload: number
+  }
+}
+
+```
+
+АССИНХРОННОЕ ИЗМЕНЕНИЕ STATE
+
+можно использовать библиотеку redux-thunk[https://redux.js.org/usage/writing-logic-thunks]
+
+```
+import {reduxThunk} from 'redux-thunk'
+
+
 ```
