@@ -3355,7 +3355,7 @@ function mapStateToProps(state)
   }
 }
 
-2) mapDispatchToProps // функция создается как показано ниже. Позволяет использовать action через методы dispatch
+2) mapDispatchToProps // функция создается как показано ниже. Позволяет использовать action через методы dispatch. Создается только после компонента
 
 function mapDispatchToProps(dispatch)
 {
@@ -3374,6 +3374,46 @@ function mapDispatchToProps(dispatch)
 </div>
 
 export default connect(mapStateToProps, mapDispatchToProps) (App) // вызывается функция connect, после этого возвращается и вызывается новая функция с App (такая логика работы)
+```
+
+Объединение редьюсеров
+Создается отдельный файл куда импортируются редьюсеры с помощью функции combineReducers
+```
+import {combineReducers} from 'redux'
+
+import reducer1 from './reducer1'
+import reducer2 from './reducer2'
+
+export default combineReducers ({
+  reducer1,
+  reducer2
+})
+```
+MIDDLEWARE
+- функция, добавляющая функционал. К примеру функция, получающая состояние store
+
+```
+import {applyMiddleware} from 'redux'
 
 
+function loggerMiddleware(store)
+{
+  return function(next)
+  {
+    return function(action)
+    {
+      const result = next(action)
+      return result
+    }
+  }
+}
+
+ИЛИ стрелочной функцией
+const loggerMiddleware = store => next => action =>
+{
+  const result = next(action)
+  return result
+}
+
+const store = createStore(rootReducer, applyMiddleware(loggerMiddleware))
 ```
